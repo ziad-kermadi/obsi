@@ -27,12 +27,12 @@ where:
 - **Simulations approximate the expectation**
 
 ### **When to Use Monte Carlo?**
-| **Use Case** | **Why Monte Carlo?** |
-|-------------|--------------------|
-| **Path-Dependent Options** (Asian, Barrier) | Can't solve analytically |
-| **Multi-Asset Options** (Basket, Spread) | Multi-dimensional nature |
-| **Stochastic Volatility Models** (Heston, SABR) | Non-closed form solutions |
-| **American Options** | Need early exercise (Longstaff-Schwartz) |
+| **Use Case**                                    | **Why Monte Carlo?**                     |
+| ----------------------------------------------- | ---------------------------------------- |
+| **Path-Dependent Options** (Asian, Barrier)     | Can't solve analytically                 |
+| **Multi-Asset Options** (Basket, Spread)        | Multi-dimensional nature                 |
+| **Stochastic Volatility Models** (Heston, SABR) | Non-closed form solutions                |
+| **American Options**                            | Need early exercise (Longstaff-Schwartz) |
 
 ---
 
