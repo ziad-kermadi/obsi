@@ -6,7 +6,7 @@ Sure! Let’s step through a detailed proof that the determinant of an upper tri
 
 For an n×nn \times n matrix AA, the determinant is defined as:
 
-det⁡(A)=∑σ∈Snsgn(σ)∏i=1nAi,σ(i)\det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^n A_{i, \sigma(i)}
+$$det⁡(A)=∑σ∈Snsgn(σ)∏i=1nAi,σ(i)\det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^n A_{i, \sigma(i)}$$
 
 where:
 
