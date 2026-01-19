@@ -7,16 +7,16 @@ This cheat sheet covers **common time complexities**, their **intuitions**, and 
 
 ## **1. Complexity Classes Overview**
 
-| **Big-O Notation** | **Name**             | **Intuition** | **Example Algorithms** |
-|--------------------|----------------------|--------------|-----------------------|
-| **O(1)**          | Constant Time         | Takes the same amount of time, no matter the input size | Array indexing, Hash table lookup (`std::unordered_map`) |
-| **O(log n)**      | Logarithmic Time      | Each step reduces the problem size by a fraction | Binary Search, Tree operations (Balanced BST) |
-| **O(n)**          | Linear Time           | Time grows directly with input size | Iterating through an array, Finding min/max |
-| **O(n log n)**    | Linearithmic Time     | Combination of linear and logarithmic growth | Merge Sort, QuickSort (average case), Heap Sort |
-| **O(n²)**         | Quadratic Time        | Every element interacts with every other element | Bubble Sort, Selection Sort, Insertion Sort |
-| **O(n³)**         | Cubic Time            | Triple nested loops | Floyd-Warshall Algorithm (All-Pairs Shortest Path) |
-| **O(2ⁿ)**         | Exponential Time      | Doubles with each step | Recursive Fibonacci, Backtracking (Subset Generation) |
-| **O(n!)**         | Factorial Time        | Explodes rapidly as input size increases | Traveling Salesman Problem (TSP), Permutations |
+| **Big-O Notation** | **Name**          | **Intuition**                                           | **Example Algorithms**                                   |
+| ------------------ | ----------------- | ------------------------------------------------------- | -------------------------------------------------------- |
+| **O(1)**           | Constant Time     | Takes the same amount of time, no matter the input size | Array indexing, Hash table lookup (`std::unordered_map`) |
+| **O(log n)**       | Logarithmic Time  | Each step reduces the problem size by a fraction        | Binary Search, Tree operations (Balanced BST)            |
+| **O(n)**           | Linear Time       | Time grows directly with input size                     | Iterating through an array, Finding min/max              |
+| **O(n log n)**     | Linearithmic Time | Combination of linear and logarithmic growth            | Merge Sort, QuickSort (average case), Heap Sort          |
+| **O(n²)**          | Quadratic Time    | Every element interacts with every other element        | Bubble Sort, Selection Sort, Insertion Sort              |
+| **O(n³)**          | Cubic Time        | Triple nested loops                                     | Floyd-Warshall Algorithm (All-Pairs Shortest Path)       |
+| **O(2ⁿ)**          | Exponential Time  | Doubles with each step                                  | Recursive Fibonacci, Backtracking (Subset Generation)    |
+| **O(n!)**          | Factorial Time    | Explodes rapidly as input size increases                | Traveling Salesman Problem (TSP), Permutations           |
 
 ---
 
