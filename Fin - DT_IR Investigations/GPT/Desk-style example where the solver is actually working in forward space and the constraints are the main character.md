@@ -35,7 +35,7 @@ f_{d,k} \quad \text{for } (t_{k-1},t_k],  \Delta t = 0.25
 $$
 Then the discount factor is:
 $$
-D(t_k)=\exp!\left(-\sum_{j=1}^{k} f_{d,j}\Delta t\right)
+D(t_k)=\exp\left(-\sum_{j=1}^{k} f_{d,j}\Delta t\right)
 $$
 So you never “solve for DFs” directly. You solve for the **forward increments**, then integrate into DFs.
 
@@ -52,14 +52,7 @@ This is the forward the float leg uses (with daycount and fixing conventions in 
 ## 3) Desk-style objective: fit + weights + shape control
 
 A typical “risk curve” solve looks like:
-$$
-\min_{f_d,,L};;
-\underbrace{\sum_i w_i,r_i(f_d,L)^2}*{\text{fit market quotes}}
-;+;
-\underbrace{\lambda \sum_k (\Delta^2 f*{d,k})^2 + \lambda' \sum_k (\Delta^2 L_k)^2}*{\text{curvature smoothing}}
-;+;
-\underbrace{\mu \sum_k \max(0,|\Delta f*{d,k}|-s_{max})^2 + \mu' \sum_k \max(0,|\Delta L_k|-s_{max})^2}_{\text{slope soft-cap}}
-$$
+![[IMG-20260125195315683.png]]
 Where:
 
 * (r_i) are residuals (par swap PV errors, quote errors, etc.)
@@ -83,7 +76,7 @@ In forward parameterization, this is basically:
 $$
 f_{d,k} \ge 0 \quad \forall k
 $$
-Because if (f_{d,k}\ge 0), then each step multiplies DF by (\exp(-f_{d,k}\Delta t)\le 1), so DFs can’t increase.
+Because if $$f_{d,k}\ge 0$$, then each step multiplies DF by $$\exp(-f_{d,k}\Delta t)\le 1$$, so DFs can’t increase.
 
 **How desks enforce it**
 
@@ -150,8 +143,8 @@ $$
 
 We build:
 
-* discount forwards (f_{d,1.8}) (OIS discounting)
-* 3M projection forwards (L_{1.8})
+* discount forwards $$f_{d,1.8}$$ (OIS discounting)
+* 3M projection forwards $$L_{1.8}$$
 
 **Market instruments**
 
@@ -161,8 +154,8 @@ We build:
 
 **Constraints enforced**
 
-* (f_{d,k}\ge 0)  (so (D) decreases)
-* (0 \le L_k \le 12%)
+* $$f_{d,k}\ge 0$$  (so (D) decreases)
+* $$0 \le L_k \le 12\%$$
 * slope control (targeting “no quarter-to-quarter jumps”)
 * curvature smoothing (avoid kinks)
 
