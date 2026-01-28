@@ -124,7 +124,7 @@ Would you like a **3D plot of these surfaces** for visualization? 🚀
 ---------------
 ----
 
-![[Pasted image 20250318204718.png]]
+![[IMG-20260128195625910.png]]
 
 
 ### **Step-by-Step Explanation of SKEWPARAMETRIC Quadratic Local Volatility Surface**

@@ -137,7 +137,7 @@ This method builds a **smooth forward curve** that transitions seamlessly across
 This approach balances **mathematical flexibility** (via splines) with **practical stability** (ensuring that swaps and discount factors behave correctly for pricing and risk management).
 
 
-![[Pasted image 20250318181133.png]]
+![[IMG-20260128195626030.png]]
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 ### **Concept of Splines**
@@ -245,9 +245,9 @@ For **cubic splines**, this results in a **tridiagonal system**, which is effici
 
 ![[Hybrid_forward_splines.pdf]]
 
-![[Pasted image 20250317113709.png]]
+![[IMG-20260128195626372.png]]
 
-![[Pasted image 20250317113725.png]]
+![[IMG-20260128195626641.png]]
 
-![[Pasted image 20250317113735.png]]
+![[IMG-20260128195626922.png]]
 

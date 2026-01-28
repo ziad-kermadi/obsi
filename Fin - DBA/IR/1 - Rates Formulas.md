@@ -1,9 +1,7 @@
-![[Pasted image 20250316141256.png]]
+![[IMG-20260128195625832.png]]
 
-![[Pasted image 20250318182748.png]]
-![[Pasted image 20250318182800.png]]
-
-
+![[IMG-20260128195625964.png]]
+![[IMG-20260128195626325.png]]
 
 
 
@@ -14,42 +12,44 @@
 
 
 
-![[Pasted image 20250316141431.png]]
-
-![[Pasted image 20250316141523.png]]
-
-![[Pasted image 20250317094951.png]]
-
-![[Pasted image 20250317095900.png]]
 
 
+![[IMG-20260128195626602.png]]
 
-![[Pasted image 20250319100622.png]]
+![[IMG-20260128195626885.png]]
+
+![[IMG-20260128195627132.png]]
+
+![[IMG-20260128195627356.png]]
 
 
-![[Pasted image 20250317104041.png]]
+
+![[IMG-20260128195627545.png]]
+
+
+![[IMG-20260128195627785.png]]
 ***LIBOR CURVE**
 
-![[Pasted image 20250317105919.png]]
+![[IMG-20260128195628078.png]]
 
-![[Pasted image 20250317110004.png]]
+![[IMG-20260128195628298.png]]
 
-![[Pasted image 20250317110042.png]]
+![[IMG-20260128195628497.png]]
 
-![[Pasted image 20250317110133.png]]
+![[IMG-20260128195628693.png]]
 
-![[Pasted image 20250317110205.png]]
+![[IMG-20260128195628906.png]]
 
-![[Pasted image 20250317110237.png]]
+![[IMG-20260128195629123.png]]
 
-![[Pasted image 20250317110315.png]]
+![[IMG-20260128195629357.png]]
 
-![[Pasted image 20250317110535.png]]
+![[IMG-20260128195629563.png]]
 
-![[Pasted image 20250317110716.png]]
-![[Pasted image 20250317110743.png]]
+![[IMG-20260128195629780.png]]
+![[IMG-20260128195629848.png]]
 
-![[Pasted image 20250317111109.png]]
+![[IMG-20260128195630099.png]]
 
 
 ## **Ensuring Smoothness in Turn Adjustments: The Parallel_Zero Method**
@@ -137,12 +137,12 @@ Would you like a step-by-step numerical example to illustrate how discount facto
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 **OIS Curve**
-![[Pasted image 20250317121046.png]]
+![[IMG-20260128195630275.png]]
 
-![[Pasted image 20250317121118.png]]
-![[Pasted image 20250317121143.png]]
-![[Pasted image 20250317121213.png]]
-![[Pasted image 20250317121236.png]]
+![[IMG-20260128195630447.png]]
+![[IMG-20260128195630670.png]]
+![[IMG-20260128195630855.png]]
+![[IMG-20260128195631061.png]]
 
 ### **Understanding the DiscountSpreads Table: Types of Spreads and Market Sources**
 
@@ -220,16 +220,16 @@ To construct these spreads, we look at **market-traded derivatives that reveal d
 
 ---
 
-![[Pasted image 20250318165826.png]]
+![[IMG-20260128195631239.png]]
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-![[Pasted image 20250317121303.png]]
-![[Pasted image 20250317121325.png]]
-![[Pasted image 20250317121351.png]]
+![[IMG-20260128195631273.png]]
+![[IMG-20260128195631412.png]]
+![[IMG-20260128195631498.png]]
 
-![[Pasted image 20250318171121.png]]
+![[IMG-20260128195631591.png]]
 
-![[Pasted image 20250318170430.png]]
-![[Pasted image 20250317121428.png]]
+![[IMG-20260128195631651.png]]
+![[IMG-20260128195631756.png]]
 
 
