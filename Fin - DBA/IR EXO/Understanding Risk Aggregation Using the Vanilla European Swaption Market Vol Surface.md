@@ -1,11 +1,3 @@
-
-
-
-DBA pics to be done
-
-
-### **Understanding Risk Aggregation Using the Vanilla European Swaption Market Vol Surface**  
-
 When we say that the **vanilla European swaption market volatility surface** is used as an input, it means that the **volatility risk of non-standard options (e.g., Bermudan swaptions or callable swaps) is mapped to a set of vanilla European swaptions**. This enables:
 
 1. **Risk to be expressed in terms of vanilla option volatilities** rather than bespoke, complex instruments.
