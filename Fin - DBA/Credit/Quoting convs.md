@@ -141,4 +141,3 @@ $$\Delta = S_{par} - S_{quoted}$$
 
 This difference exists because the **Par Spread** "sees" the 3-month risk bump, while the **Quoted Spread** model closes its eyes and pretends the 6-month risk is a perfectly straight line from day zero.
 
-**Would you like me to write a Python snippet that implements a basic version of this conversion so you can see the "flat hazard rate" logic in action?**
