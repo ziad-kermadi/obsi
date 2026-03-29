@@ -46,6 +46,7 @@ Where $Q(0, t)$ is the **Survival Probability**: $Q(0, t) = e^{-\int_{0}^{t} \la
 
 Since this is the first pillar, we solve for the $\lambda_1$ that makes the equation match the market 6M Upfront.
 
+![[IMG-20260329214355023.png]]
 #### **Step 4: The Recursive Leap (1Y, 2Y... 10Y)**
 
 Now we move to the 1-year pillar ($T_2$).
@@ -404,7 +405,9 @@ This treats the default as occurring at the midpoint of each period on average. 
 
 For the segment [a, b] with hazard h and discount rate r:
 
-∫ₐᵇ (t−a) · e^{−r·t} · h · e^{−h·t} dt = h · e^{−(r+h)·a} · [ (e^{−(r+h)·(b−a)} − 1) / (r+h)² + (b−a)·e^{−(r+h)·(b−a)} / (r+h) ]
+![[IMG-20260329220853788.png]]
+
+![[IMG-20260329221001199.png]]
 
 Most production systems use the mid-period approximation for speed. The difference is sub-0.1bp for investment-grade names, but can reach 0.5–1bp for high-yield.
 
