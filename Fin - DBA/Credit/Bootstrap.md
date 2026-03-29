@@ -401,6 +401,8 @@ The mid-period approximation used in practice:
 
 PV(accrued) ≈ C · Σᵢ (Δtᵢ/2) · DF(midᵢ) · [Q(tᵢ₋₁) − Q(tᵢ)]
 
+![[IMG-20260329223526126.png]]
+
 This treats the default as occurring at the midpoint of each period on average. More accurate systems use the exact integral under piecewise-constant h, which has a closed form:
 
 For the segment [a, b] with hazard h and discount rate r:
