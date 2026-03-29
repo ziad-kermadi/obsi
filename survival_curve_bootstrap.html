@@ -1,0 +1,156 @@
+
+<div style="padding:1rem 0">
+<div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+  <div style="flex:1;min-width:180px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 16px">
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:4px">Credit quality</div>
+    <select id="creditSelect" style="width:100%;font-size:13px" onchange="updateCurve()">
+      <option value="ig">Investment grade (IG) ~80bps 5Y</option>
+      <option value="hy" selected>High yield (HY) ~350bps 5Y</option>
+      <option value="dist">Distressed ~800bps 5Y</option>
+    </select>
+  </div>
+  <div style="flex:1;min-width:180px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 16px">
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:4px">Recovery rate: <span id="recLabel">40%</span></div>
+    <input type="range" id="recSlider" min="10" max="70" value="40" step="5" style="width:100%" oninput="document.getElementById('recLabel').textContent=this.value+'%';updateCurve()">
+  </div>
+</div>
+
+<div style="display:flex;gap:8px;margin-bottom:8px;font-size:11px;color:var(--color-text-secondary)">
+  <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:3px;background:#185FA5;display:inline-block;border-radius:2px"></span>Survival probability Q(t)</span>
+  <span style="display:flex;align-items:center;gap:4px;margin-left:8px"><span style="width:10px;height:3px;background:#993C1D;display:inline-block;border-radius:2px"></span>Hazard rate h(t) ×10</span>
+</div>
+
+<div style="position:relative;width:100%;height:240px">
+  <canvas id="survChart"></canvas>
+</div>
+
+<div style="overflow-x:auto;margin-top:16px">
+<table id="bootstrapTable" style="width:100%;font-size:12px;border-collapse:collapse">
+  <thead>
+    <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
+      <th style="text-align:left;padding:6px 8px;color:var(--color-text-secondary);font-weight:500">Tenor</th>
+      <th style="text-align:right;padding:6px 8px;color:var(--color-text-secondary);font-weight:500">Par spread (bps)</th>
+      <th style="text-align:right;padding:6px 8px;color:var(--color-text-secondary);font-weight:500">Hazard rate h (bps)</th>
+      <th style="text-align:right;padding:6px 8px;color:var(--color-text-secondary);font-weight:500">Survival prob Q(t)</th>
+      <th style="text-align:right;padding:6px 8px;color:var(--color-text-secondary);font-weight:500">Cumul. default prob</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody"></tbody>
+</table>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const spreadsMap = {
+  ig:   [30, 50, 65, 80, 90, 100],
+  hy:   [150, 220, 280, 350, 390, 420],
+  dist: [400, 550, 680, 800, 860, 900]
+};
+const tenors = [1, 2, 3, 5, 7, 10];
+let chartInst = null;
+
+function bootstrap(spreads, recovery) {
+  const LGD = 1 - recovery;
+  const hazards = [];
+  const Q = [1.0];
+  const dt = [1, 1, 1, 2, 2, 3];
+
+  for (let i = 0; i < tenors.length; i++) {
+    const S = spreads[i] / 10000;
+    const T = tenors[i];
+    let hGuess = S / LGD;
+    for (let iter = 0; iter < 50; iter++) {
+      let feeLeg = 0, protLeg = 0;
+      let Qi = Q[Q.length - 1];
+      for (let j = i; j <= i; j++) {
+        const dT = dt[j];
+        const Qnew = Qi * Math.exp(-hGuess * dT);
+        feeLeg += S * dT * (Qi + Qnew) / 2 * Math.exp(-0.05 * tenors[j]);
+        protLeg += LGD * (Qi - Qnew) * Math.exp(-0.05 * tenors[j]);
+        Qi = Qnew;
+      }
+      const diff = protLeg - feeLeg;
+      if (Math.abs(diff) < 1e-10) break;
+      hGuess += diff * 0.5;
+      if (hGuess < 0) hGuess = 0.0001;
+    }
+    hazards.push(hGuess);
+    let Qlast = Q[Q.length - 1];
+    for (let k = 0; k < dt[i]; k++) {
+      Qlast = Qlast * Math.exp(-hGuess);
+    }
+    Q.push(Qlast);
+  }
+  return { hazards, Q: Q.slice(1) };
+}
+
+function updateCurve() {
+  const credit = document.getElementById('creditSelect').value;
+  const rec = parseInt(document.getElementById('recSlider').value) / 100;
+  const spreads = spreadsMap[credit];
+  const { hazards, Q } = bootstrap(spreads, rec);
+
+  const labels = tenors.map(t => t + 'Y');
+  const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  const gridCol = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.07)';
+  const txtCol = isDark ? '#9c9a92' : '#73726c';
+
+  if (chartInst) chartInst.destroy();
+  chartInst = new Chart(document.getElementById('survChart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Survival prob Q(t)',
+          data: Q.map(v => +(v * 100).toFixed(2)),
+          borderColor: '#185FA5',
+          backgroundColor: 'rgba(24,95,165,0.07)',
+          fill: true,
+          tension: 0.3,
+          borderWidth: 2,
+          pointRadius: 4,
+          yAxisID: 'yQ'
+        },
+        {
+          label: 'Hazard rate (×10)',
+          data: hazards.map(v => +(v * 1000).toFixed(2)),
+          borderColor: '#993C1D',
+          borderDash: [5,3],
+          fill: false,
+          tension: 0.2,
+          borderWidth: 1.5,
+          pointRadius: 3,
+          yAxisID: 'yH'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { mode: 'index' } },
+      scales: {
+        x: { grid: { color: gridCol }, ticks: { color: txtCol, font: { size: 11 } } },
+        yQ: { position: 'left', min: 0, max: 100, grid: { color: gridCol }, ticks: { color: '#185FA5', font: { size: 11 }, callback: v => v + '%' } },
+        yH: { position: 'right', min: 0, grid: { display: false }, ticks: { color: '#993C1D', font: { size: 11 }, callback: v => v.toFixed(0) + ' bps×10' } }
+      }
+    }
+  });
+
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+  tenors.forEach((t, i) => {
+    const bg = i % 2 === 0 ? 'var(--color-background-primary)' : 'var(--color-background-secondary)';
+    tbody.innerHTML += `<tr style="background:${bg}">
+      <td style="padding:5px 8px;font-weight:500">${t}Y</td>
+      <td style="padding:5px 8px;text-align:right">${spreads[i]}</td>
+      <td style="padding:5px 8px;text-align:right">${(hazards[i]*10000).toFixed(1)}</td>
+      <td style="padding:5px 8px;text-align:right">${(Q[i]*100).toFixed(2)}%</td>
+      <td style="padding:5px 8px;text-align:right;color:var(--color-text-danger)">${((1-Q[i])*100).toFixed(2)}%</td>
+    </tr>`;
+  });
+}
+
+updateCurve();
+</script>

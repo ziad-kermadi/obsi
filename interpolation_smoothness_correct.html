@@ -1,0 +1,259 @@
+
+<style>
+.bdg{font-size:10px;font-weight:500;padding:2px 6px;border-radius:4px;display:inline-block}
+.ok{background:#E1F5EE;color:#085041}.bad{background:#FCEBEB;color:#791F1F}.wrn{background:#FAEEDA;color:#633806}
+@media(prefers-color-scheme:dark){.ok{background:#085041;color:#9FE1CB}.bad{background:#791F1F;color:#F7C1C1}.wrn{background:#633806;color:#FAC775}}
+</style>
+<div style="padding:1rem 0">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 12px">
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:2px">Spread profile</div>
+    <select id="cq2" style="font-size:12px;width:100%" onchange="rb2()">
+      <option value="ig">Investment grade — shallow upward slope</option>
+      <option value="hy" selected>High yield — steep upward slope</option>
+      <option value="inv">Inverted front — triggers spline violations</option>
+    </select>
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 12px">
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:2px">Recovery: <span id="rl2">40%</span></div>
+    <input type="range" id="rs2" min="10" max="70" value="40" step="5" style="width:100%" oninput="rl2.textContent=this.value+'%';rb2()">
+  </div>
+</div>
+<div style="display:flex;gap:16px;margin-bottom:6px;font-size:11px;color:var(--color-text-secondary);flex-wrap:wrap">
+  <span><span style="width:18px;height:2px;background:#185FA5;display:inline-block;vertical-align:middle;margin-right:3px"></span>Piecewise-constant h (ISDA)</span>
+  <span><span style="display:inline-block;width:18px;vertical-align:middle;margin-right:3px;border-top:2px dashed #993C1D;height:0"></span>Cubic spline on log-Q</span>
+  <span><span style="display:inline-block;width:18px;vertical-align:middle;margin-right:3px;border-top:2px dotted #0F6E56;height:0"></span>Monotone convex</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+  <div>
+    <div style="font-size:10px;color:var(--color-text-secondary);text-align:center;margin-bottom:3px">Survival probability Q(t) — three methods nearly identical here</div>
+    <div style="position:relative;height:190px"><canvas id="qc2"></canvas></div>
+  </div>
+  <div>
+    <div style="font-size:10px;color:var(--color-text-secondary);text-align:center;margin-bottom:3px">Forward hazard h(t) — this is where the methods diverge</div>
+    <div style="position:relative;height:190px"><canvas id="hc2"></canvas></div>
+  </div>
+</div>
+<div id="warn2" style="display:none;background:#FAEEDA;border:0.5px solid #EF9F27;border-radius:var(--border-radius-md);padding:8px 12px;font-size:11px;color:#633806;margin-bottom:10px"></div>
+<table style="width:100%;font-size:11px;border-collapse:collapse">
+<thead><tr style="background:var(--color-background-secondary)">
+  <th style="padding:5px 8px;text-align:left;font-weight:500;color:var(--color-text-secondary)">Method</th>
+  <th style="padding:5px 8px;text-align:center;font-weight:500;color:var(--color-text-secondary)">Exact pillar fit</th>
+  <th style="padding:5px 8px;text-align:center;font-weight:500;color:var(--color-text-secondary)">h(t) ≥ 0 guaranteed</th>
+  <th style="padding:5px 8px;text-align:center;font-weight:500;color:var(--color-text-secondary)">h(t) continuous</th>
+  <th style="padding:5px 8px;text-align:center;font-weight:500;color:var(--color-text-secondary)">h(t) smooth</th>
+  <th style="padding:5px 8px;text-align:left;font-weight:500;color:var(--color-text-secondary)">Desk usage</th>
+</tr></thead>
+<tbody>
+<tr><td style="padding:5px 8px;font-weight:500;color:#185FA5">Piecewise-constant h</td>
+  <td style="padding:5px 8px;text-align:center"><span class="bdg ok">Yes</span></td>
+  <td style="padding:5px 8px;text-align:center"><span class="bdg ok">Yes (with floor)</span></td>
+  <td style="padding:5px 8px;text-align:center"><span class="bdg bad">No — step fn</span></td>
+  <td style="padding:5px 8px;text-align:center"><span class="bdg bad">No</span></td>
+  <td style="padding:5px 8px;font-size:10px;color:var(--color-text-secondary)">ISDA standard, all vanilla desks</td>
+</tr>
+<tr style="background:var(--color-background-secondary)">
+  <td style="padding:5px 8px;font-weight:500;color:#993C1D">Cubic spline log-Q</td>
+  <td style="padding:5px 8px;text-align:center"><span class="bdg ok">Yes</span></td>
+  <td id="spPos" style="padding:5px 8px;text-align:center"><span class="bdg wrn">Not guaranteed</span></td>
+  <td style="padding:5px 8px;text-align:center"><span class="bdg ok">Yes</span></td>
+  <td style="padding:5px 8px;text-align:center"><span class="bdg ok">Yes</span></td>
+  <td style="padding:5px 8px;font-size:10px;color:var(--color-text-secondary)">Exotics desks, academic</td>
+</tr>
+<tr><td style="padding:5px 8px;font-weight:500;color:#0F6E56">Monotone convex</td>
+  <td style="padding:5px 8px;text-align:center"><span class="bdg ok">Yes</span></td>
+  <td style="padding:5px 8px;text-align:center"><span class="bdg ok">Yes</span></td>
+  <td style="padding:5px 8px;text-align:center"><span class="bdg ok">Yes</span></td>
+  <td style="padding:5px 8px;text-align:center"><span class="bdg ok">Yes</span></td>
+  <td style="padding:5px 8px;font-size:10px;color:var(--color-text-secondary)">XVA desks, credit exotics</td>
+</tr>
+</tbody>
+</table>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const TN2=[0,0.5,1,2,3,5,7,10];
+const PRESETS={
+  ig:[30,50,65,80,90,100,110],
+  hy:[185,210,255,295,350,385,410],
+  inv:[420,290,190,160,185,210,235]
+};
+let QC2=null,HC2=null;
+
+function pBoot2(sp,rec){
+  const LGD=1-rec,r=0.05,SPY=12;
+  let h=[],Qf=[1],cF=0,cP=0;
+  for(let i=0;i<7;i++){
+    const ti=TN2[i+1],tp=TN2[i],dT=ti-tp,Qs=Qf[i];
+    let S=sp[i]/10000;
+    const ns=Math.max(2,Math.round(dT*SPY)),dt=dT/ns;
+    const legs=hv=>{
+      let f=0,p=0;
+      for(let k=0;k<ns;k++){
+        const t0=tp+k*dt,t1=t0+dt;
+        const Q0=Qs*Math.exp(-hv*k*dt),Q1=Qs*Math.exp(-hv*(k+1)*dt);
+        f+=dt*Math.exp(-r*t1)*Q1;
+        p+=LGD*Math.exp(-r*(t0+t1)/2)*(Q0-Q1);
+      }
+      return{f,p};
+    };
+    const obj=hv=>{const{f,p}=legs(hv);return(cP+p)-S*(cF+f);};
+    let hv=S/LGD;
+    for(let it=0;it<80;it++){
+      const fh=obj(hv);if(Math.abs(fh)<1e-11)break;
+      const e=Math.max(Math.abs(hv)*1e-3,1e-7);
+      const g=(obj(hv+e)-fh)/e;
+      if(Math.abs(g)<1e-20)break;
+      hv-=fh/g;
+    }
+    hv=Math.max(hv,1e-6);
+    h.push(hv);
+    Qf.push(Qf[i]*Math.exp(-hv*dT));
+    const{f,p}=legs(hv);cF+=f;cP+=p;
+  }
+  return{h,Qf};
+}
+
+function fitNCS2(xs,ys){
+  const n=xs.length-1,a=ys.slice(),h2=[],alpha=[];
+  for(let i=0;i<n;i++)h2.push(xs[i+1]-xs[i]);
+  for(let i=1;i<n;i++)alpha.push(3*(a[i+1]-a[i])/h2[i]-3*(a[i]-a[i-1])/h2[i-1]);
+  const l=[1],mu=[0],z=[0];
+  for(let i=1;i<n;i++){
+    l.push(2*(xs[i+1]-xs[i-1])-h2[i-1]*mu[i-1]);
+    mu.push(h2[i]/l[i]);
+    z.push((alpha[i-1]-h2[i-1]*z[i-1])/l[i]);
+  }
+  const c=new Array(n+1).fill(0);
+  for(let j=n-1;j>=0;j--)c[j]=z[j]-(mu[j]||0)*(c[j+1]||0);
+  const b=[],d=[];
+  for(let i=0;i<n;i++){
+    b.push((a[i+1]-a[i])/h2[i]-h2[i]*(2*c[i]+c[i+1])/3);
+    d.push((c[i+1]-c[i])/(3*h2[i]));
+  }
+  return{a,b,c,d,xs:xs.slice(),h2};
+}
+
+function evalNCS2(sp,t){
+  t=Math.max(sp.xs[0],Math.min(sp.xs[sp.xs.length-1],t));
+  let i=sp.xs.length-2;
+  for(let j=0;j<sp.xs.length-1;j++)if(t<=sp.xs[j+1]){i=j;break;}
+  const dt=t-sp.xs[i];
+  return sp.a[i]+sp.b[i]*dt+sp.c[i]*dt*dt+sp.d[i]*dt*dt*dt;
+}
+function derivNCS2(sp,t){
+  t=Math.max(sp.xs[0],Math.min(sp.xs[sp.xs.length-1],t));
+  let i=sp.xs.length-2;
+  for(let j=0;j<sp.xs.length-1;j++)if(t<=sp.xs[j+1]){i=j;break;}
+  const dt=t-sp.xs[i];
+  return sp.b[i]+2*sp.c[i]*dt+3*sp.d[i]*dt*dt;
+}
+
+function mcNodes2(h,TN){
+  const n=h.length,g=new Array(n+1);
+  g[0]=Math.max(0,h[0]);g[n]=Math.max(0,h[n-1]);
+  for(let i=1;i<n;i++){
+    const dL=TN[i+1]-TN[i],dR=TN[i+2]-TN[i+1];
+    g[i]=(Math.max(0,h[i-1])*dR+Math.max(0,h[i])*dL)/(dL+dR);
+    const cap=2*Math.min(Math.max(0,h[i-1]),Math.max(0,h[i]));
+    g[i]=Math.max(0,Math.min(cap,g[i]));
+  }
+  return g;
+}
+
+function mcFH2(t,h,g,TN){
+  let seg=0;
+  for(let j=0;j<h.length;j++)if(t>TN[j+1])seg=j+1;
+  seg=Math.min(seg,h.length-1);
+  const dT=TN[seg+1]-TN[seg],theta=Math.min(1,Math.max(0,(t-TN[seg])/dT));
+  const g0=g[seg],g1=g[seg+1],hi=Math.max(0,h[seg]);
+  const C=3*(g0+g1)-6*hi,B=6*hi-4*g0-2*g1;
+  return Math.max(0,g0+B*theta+C*theta*theta);
+}
+
+function mcQ2(t,h,g,Qf,TN){
+  if(t<=0)return 1;
+  if(t>=TN[TN.length-1])return Qf[Qf.length-1];
+  let seg=0;
+  for(let j=0;j<h.length;j++)if(t>TN[j+1])seg=j+1;
+  seg=Math.min(seg,h.length-1);
+  const dT=TN[seg+1]-TN[seg],theta=Math.min(1,Math.max(0,(t-TN[seg])/dT));
+  const g0=g[seg],g1=g[seg+1],hi=Math.max(0,h[seg]);
+  const C=3*(g0+g1)-6*hi,B=6*hi-4*g0-2*g1;
+  const intG=(g0*theta+B*theta*theta/2+C*theta*theta*theta/3)*dT;
+  return Qf[seg]*Math.exp(-intG);
+}
+
+function pcQ2(t,h,Qf,TN){
+  if(t<=0)return 1;
+  let seg=0;
+  for(let j=0;j<h.length;j++)if(t>TN[j+1])seg=j+1;
+  seg=Math.min(seg,h.length-1);
+  return Qf[seg]*Math.exp(-Math.max(0,h[seg])*(t-TN[seg]));
+}
+
+function rb2(){
+  const key=document.getElementById('cq2').value;
+  const rec=+document.getElementById('rs2').value/100;
+  const sp=PRESETS[key];
+  const{h,Qf}=pBoot2(sp,rec);
+  const logQf=Qf.map(q=>Math.log(Math.max(q,1e-15)));
+  const spObj=fitNCS2(TN2,[0,...logQf]);
+  const g=mcNodes2(h,TN2);
+
+  const GRID=[];
+  for(let t=0;t<=10;t+=0.04)GRID.push(parseFloat(t.toFixed(2)));
+
+  const Qpc=GRID.map(t=>pcQ2(t,h,Qf,TN2)*100);
+  const Qsp=GRID.map(t=>Math.exp(Math.min(0,evalNCS2(spObj,t)))*100);
+  const Qmc=GRID.map(t=>mcQ2(t,h,g,Qf,TN2)*100);
+
+  const Hpc=GRID.map(t=>{
+    let seg=0;for(let j=0;j<h.length;j++)if(t>TN2[j+1])seg=j+1;
+    return Math.max(0,h[Math.min(seg,h.length-1)])*1e4;
+  });
+  const Hsp=GRID.map(t=>-derivNCS2(spObj,t)*1e4);
+  const Hmc=GRID.map(t=>mcFH2(t,h,g,TN2)*1e4);
+
+  const minHsp=Math.min(...Hsp);
+  const hasSplViol=minHsp<-1;
+  const warn=document.getElementById('warn2');
+  if(hasSplViol){
+    warn.style.display='block';
+    warn.innerHTML=`<span style="font-weight:500">Cubic spline violation detected:</span> minimum forward hazard = ${minHsp.toFixed(1)} bps. The spline oscillates between flat Q regions and drives h(t) negative — visible in the right chart as the dashed line dipping below zero. Monotone convex (dotted) stays positive throughout.`;
+    document.getElementById('spPos').innerHTML='<span class="bdg bad">VIOLATED</span>';
+  } else {
+    warn.style.display='none';
+    document.getElementById('spPos').innerHTML='<span class="bdg wrn">Not guaranteed</span>';
+  }
+
+  const pillarPts=TN2.slice(1).map((t,i)=>({x:t,y:Qf[i]*100}));
+  const isDark=matchMedia('(prefers-color-scheme:dark)').matches;
+  const gc=isDark?'rgba(255,255,255,.07)':'rgba(0,0,0,.07)';
+  const tc=isDark?'#9c9a92':'#73726c';
+
+  const baseOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{x:{type:'linear',min:0,max:10,grid:{color:gc},ticks:{color:tc,font:{size:10},stepSize:2}},
+    y:{grid:{color:gc},ticks:{color:tc,font:{size:10}}}}};
+
+  if(QC2)QC2.destroy();
+  QC2=new Chart(document.getElementById('qc2'),{type:'line',data:{labels:GRID,datasets:[
+    {data:Qpc,borderColor:'#185FA5',borderWidth:2,pointRadius:0,fill:false,tension:0},
+    {data:Qsp,borderColor:'#993C1D',borderWidth:1.5,borderDash:[6,3],pointRadius:0,fill:false,tension:0},
+    {data:Qmc,borderColor:'#0F6E56',borderWidth:1.5,borderDash:[3,3],pointRadius:0,fill:false,tension:0},
+    {data:GRID.map(t=>{const p=pillarPts.find(p=>Math.abs(p.x-t)<0.03);return p?p.y:null}),
+      borderColor:'#185FA5',pointRadius:5,pointBackgroundColor:'#E6F1FB',showLine:false}
+  ]},options:{...baseOpts,scales:{...baseOpts.scales,y:{...baseOpts.scales.y,title:{display:true,text:'Q(t) %',color:tc,font:{size:10}}}}}});
+
+  const yMin=Math.min(-20,minHsp-20,0);
+  if(HC2)HC2.destroy();
+  HC2=new Chart(document.getElementById('hc2'),{type:'line',data:{labels:GRID,datasets:[
+    {data:Hpc,borderColor:'#185FA5',borderWidth:2,pointRadius:0,fill:false,tension:0,stepped:'after'},
+    {data:Hsp,borderColor:'#993C1D',borderWidth:1.5,borderDash:[6,3],pointRadius:0,fill:false,tension:0.2},
+    {data:Hmc,borderColor:'#0F6E56',borderWidth:1.5,borderDash:[3,3],pointRadius:0,fill:false,tension:0.2}
+  ]},options:{...baseOpts,scales:{...baseOpts.scales,
+    y:{...baseOpts.scales.y,min:yMin,
+      title:{display:true,text:'Forward h(t) bps',color:tc,font:{size:10}}}}}});
+}
+rb2();
+</script>

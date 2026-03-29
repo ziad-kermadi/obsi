@@ -1,0 +1,266 @@
+
+<style>
+.pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500}
+.pill-blue{background:#E6F1FB;color:#0C447C}
+.pill-teal{background:#E1F5EE;color:#085041}
+.pill-amber{background:#FAEEDA;color:#633806}
+.pill-red{background:#FCEBEB;color:#791F1F}
+@media(prefers-color-scheme:dark){
+.pill-blue{background:#0C447C;color:#B5D4F4}
+.pill-teal{background:#085041;color:#9FE1CB}
+.pill-amber{background:#633806;color:#FAC775}
+.pill-red{background:#791F1F;color:#F7C1C1}
+}
+.iter-row{display:grid;grid-template-columns:40px 90px 90px 90px 90px 90px;gap:4px;font-size:11px;padding:3px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+</style>
+<div style="padding:1rem 0">
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:16px">
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 12px">
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:3px">Recovery rate</div>
+    <div style="display:flex;align-items:center;gap:6px">
+      <input type="range" id="recSlider" min="0" max="70" value="40" step="5" style="flex:1" oninput="recLbl.textContent=this.value+'%';runAll()">
+      <span id="recLbl" style="font-size:12px;font-weight:500;min-width:28px">40%</span>
+    </div>
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 12px">
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:3px">Risk-free rate (flat)</div>
+    <div style="display:flex;align-items:center;gap:6px">
+      <input type="range" id="rfrSlider" min="0" max="10" value="5" step="0.25" style="flex:1" oninput="rfrLbl.textContent=parseFloat(this.value).toFixed(2)+'%';runAll()">
+      <span id="rfrLbl" style="font-size:12px;font-weight:500;min-width:34px">5.00%</span>
+    </div>
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 12px">
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:3px">Solver tolerance</div>
+    <select id="tolSelect" style="font-size:12px;width:100%" onchange="runAll()">
+      <option value="1e-6">1e-6 (standard)</option>
+      <option value="1e-8">1e-8 (precise)</option>
+      <option value="1e-4">1e-4 (fast)</option>
+    </select>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:12px" id="pillarBtns"></div>
+
+<div id="pillarDetail" style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px 14px"></div>
+
+<div style="margin-top:16px">
+<div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:6px">Full bootstrapped curve</div>
+<div style="overflow-x:auto">
+<table style="width:100%;font-size:11px;border-collapse:collapse" id="fullTable">
+<thead><tr style="background:var(--color-background-secondary)">
+  <th style="padding:5px 8px;text-align:left;font-weight:500;color:var(--color-text-secondary)">Tenor</th>
+  <th style="padding:5px 8px;text-align:right;font-weight:500;color:var(--color-text-secondary)">Par spread</th>
+  <th style="padding:5px 8px;text-align:right;font-weight:500;color:var(--color-text-secondary)">Hazard h (bps)</th>
+  <th style="padding:5px 8px;text-align:right;font-weight:500;color:var(--color-text-secondary)">Q(t)</th>
+  <th style="padding:5px 8px;text-align:right;font-weight:500;color:var(--color-text-secondary)">P(def)</th>
+  <th style="padding:5px 8px;text-align:right;font-weight:500;color:var(--color-text-secondary)">DF(t)</th>
+  <th style="padding:5px 8px;text-align:right;font-weight:500;color:var(--color-text-secondary)">Implied R-spread</th>
+  <th style="padding:5px 8px;text-align:right;font-weight:500;color:var(--color-text-secondary)">Newton iters</th>
+</tr></thead>
+<tbody id="fullBody"></tbody>
+</table>
+</div>
+</div>
+</div>
+
+<script>
+const TENORS = [0.5, 1, 2, 3, 5, 7, 10];
+const LABELS = ['6M','1Y','2Y','3Y','5Y','7Y','10Y'];
+const SPREADS = [185, 210, 255, 295, 350, 385, 410];
+
+let selectedPillar = 4;
+let results = [];
+
+function df(t, r) { return Math.exp(-r * t); }
+
+function bootStrap(rec, rfr, tol) {
+  const LGD = 1 - rec;
+  const res = [];
+  let hazards = [];
+  let Qprev = 1.0;
+  let tprev = 0;
+
+  for (let i = 0; i < TENORS.length; i++) {
+    const T = TENORS[i];
+    const S = SPREADS[i] / 10000;
+    const dT = T - tprev;
+    const STEPS = Math.max(4, Math.round(dT * 12));
+    const dt = dT / STEPS;
+
+    const prevHazards = hazards.slice();
+    const QatPrev = Qprev;
+
+    function computeLegs(hNew) {
+      let feePV = 0, protPV = 0, accrPV = 0;
+      let Qc = 1.0;
+      let tc = 0;
+      for (let seg = 0; seg < prevHazards.length; seg++) {
+        const h = prevHazards[seg];
+        const tEnd = TENORS[seg];
+        const n = Math.max(4, Math.round((tEnd - tc) * 12));
+        const dtSeg = (tEnd - tc) / n;
+        for (let k = 0; k < n; k++) {
+          const t0 = tc + k * dtSeg;
+          const t1 = t0 + dtSeg;
+          const Q0 = Qc * Math.exp(-h * k * dtSeg);
+          const Q1 = Qc * Math.exp(-h * (k+1) * dtSeg);
+          const dfMid = df((t0+t1)/2, rfr);
+          feePV += S * dtSeg * df(t1, rfr) * Q1;
+          accrPV += S * (dtSeg/2) * dfMid * (Q0 - Q1);
+          protPV += LGD * dfMid * (Q0 - Q1);
+        }
+        Qc = Qc * Math.exp(-h * (tEnd - tc));
+        tc = tEnd;
+      }
+      const Qstart = Qc;
+      const nNew = STEPS;
+      for (let k = 0; k < nNew; k++) {
+        const t0 = tc + k * dt;
+        const t1 = t0 + dt;
+        const Q0 = Qstart * Math.exp(-hNew * k * dt);
+        const Q1 = Qstart * Math.exp(-hNew * (k+1) * dt);
+        const dfMid = df((t0+t1)/2, rfr);
+        feePV += S * dt * df(t1, rfr) * Q1;
+        accrPV += S * (dt/2) * dfMid * (Q0 - Q1);
+        protPV += LGD * dfMid * (Q0 - Q1);
+      }
+      return { feePV: feePV + accrPV, protPV };
+    }
+
+    let h = S / LGD;
+    const iters = [];
+    let nIter = 0;
+    for (let iter = 0; iter < 60; iter++) {
+      const { feePV, protPV } = computeLegs(h);
+      const diff = protPV - feePV;
+      iters.push({ iter: iter+1, h: h*10000, feePV, protPV, diff });
+      if (Math.abs(diff) < tol) { nIter = iter+1; break; }
+      const { feePV: f2, protPV: p2 } = computeLegs(h * 1.001);
+      const dPV_dh = ((p2 - f2) - (protPV - feePV)) / (h * 0.001 + 1e-12);
+      const step = -diff / (dPV_dh || 1e-8);
+      h = Math.max(1e-6, h + step);
+      nIter = iter + 1;
+      if (Math.abs(step) < tol * 0.1) { nIter = iter + 1; break; }
+    }
+
+    hazards.push(h);
+    const Qend = Qprev * Math.exp(-h * dT);
+    const impliedSpread = h * LGD * 10000;
+
+    res.push({
+      tenor: TENORS[i], label: LABELS[i], spread: SPREADS[i],
+      h: h * 10000, Q: Qend, pDef: (1-Qend)*100,
+      dfT: df(T, rfr), iters, nIter, impliedSpread
+    });
+
+    Qprev = Qend;
+    tprev = T;
+  }
+  return res;
+}
+
+function runAll() {
+  const rec = parseInt(document.getElementById('recSlider').value) / 100;
+  const rfr = parseFloat(document.getElementById('rfrSlider').value) / 100;
+  const tol = parseFloat(document.getElementById('tolSelect').value);
+  results = bootStrap(rec, rfr, tol);
+  renderBtns();
+  renderDetail(selectedPillar);
+  renderTable();
+}
+
+function renderBtns() {
+  const el = document.getElementById('pillarBtns');
+  el.innerHTML = '';
+  LABELS.forEach((l, i) => {
+    const active = i === selectedPillar;
+    const btn = document.createElement('button');
+    btn.textContent = l;
+    btn.style.cssText = `font-size:12px;padding:6px 4px;border-radius:6px;cursor:pointer;font-weight:${active?'500':'400'};border:${active?'1.5px solid #185FA5':'0.5px solid var(--color-border-tertiary)'};background:${active?'#E6F1FB':'var(--color-background-primary)'};color:${active?'#0C447C':'var(--color-text-primary)'}`;
+    btn.onclick = () => { selectedPillar = i; renderBtns(); renderDetail(i); };
+    el.appendChild(btn);
+  });
+}
+
+function renderDetail(i) {
+  const r = results[i];
+  if (!r) return;
+  const el = document.getElementById('pillarDetail');
+  const rec = parseInt(document.getElementById('recSlider').value) / 100;
+  const rfr = parseFloat(document.getElementById('rfrSlider').value) / 100;
+  const LGD = 1 - rec;
+  const h0 = (SPREADS[i] / 10000) / LGD;
+  const lastIter = r.iters[r.iters.length - 1];
+
+  let iHtml = `<div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:4px">Newton-Raphson convergence (${r.nIter} iterations)</div>`;
+  iHtml += `<div class="iter-row" style="font-weight:500;color:var(--color-text-secondary);border-bottom:1px solid var(--color-border-secondary)">
+    <span>Iter</span><span style="text-align:right">h guess (bps)</span><span style="text-align:right">Fee leg PV</span><span style="text-align:right">Prot leg PV</span><span style="text-align:right">Diff</span><span style="text-align:right">Status</span>
+  </div>`;
+  r.iters.slice(0, 8).forEach((it, idx) => {
+    const done = idx === r.iters.length - 1;
+    iHtml += `<div class="iter-row">
+      <span style="color:var(--color-text-secondary)">${it.iter}</span>
+      <span style="text-align:right;font-family:var(--font-mono);font-size:10px">${it.h.toFixed(4)}</span>
+      <span style="text-align:right;font-family:var(--font-mono);font-size:10px">${(it.feePV*10000).toFixed(4)}</span>
+      <span style="text-align:right;font-family:var(--font-mono);font-size:10px">${(it.protPV*10000).toFixed(4)}</span>
+      <span style="text-align:right;font-family:var(--font-mono);font-size:10px;color:${Math.abs(it.diff)<1e-6?'var(--color-text-success)':'var(--color-text-secondary)'}">${it.diff.toExponential(2)}</span>
+      <span style="text-align:right">${done?'<span class="pill pill-teal">converged</span>':'<span class="pill pill-amber">running</span>'}</span>
+    </div>`;
+  });
+  if (r.iters.length > 8) {
+    iHtml += `<div style="font-size:11px;color:var(--color-text-tertiary);padding:4px 0">... ${r.iters.length - 8} more iterations omitted</div>`;
+  }
+
+  el.innerHTML = `
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    <span style="font-size:14px;font-weight:500">Pillar: ${r.label}</span>
+    <span class="pill pill-blue">S = ${r.spread} bps</span>
+    <span class="pill pill-teal">h = ${r.h.toFixed(2)} bps</span>
+    <span class="pill pill-amber">Q(t) = ${(r.Q*100).toFixed(3)}%</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;font-size:12px">
+    <div style="background:var(--color-background-secondary);border-radius:6px;padding:8px 10px">
+      <div style="color:var(--color-text-secondary);margin-bottom:2px">Initial guess h₀</div>
+      <div style="font-family:var(--font-mono);font-size:11px">${(h0*10000).toFixed(4)} bps</div>
+      <div style="color:var(--color-text-tertiary);font-size:10px;margin-top:2px">= S / LGD = ${r.spread} / ${(LGD*100).toFixed(0)}</div>
+    </div>
+    <div style="background:var(--color-background-secondary);border-radius:6px;padding:8px 10px">
+      <div style="color:var(--color-text-secondary);margin-bottom:2px">Solved h</div>
+      <div style="font-family:var(--font-mono);font-size:11px">${r.h.toFixed(4)} bps</div>
+      <div style="color:var(--color-text-tertiary);font-size:10px;margin-top:2px">Diff from guess: ${(r.h - h0*10000).toFixed(4)} bps</div>
+    </div>
+    <div style="background:var(--color-background-secondary);border-radius:6px;padding:8px 10px">
+      <div style="color:var(--color-text-secondary);margin-bottom:2px">Residual |protPV − feePV|</div>
+      <div style="font-family:var(--font-mono);font-size:11px">${lastIter ? Math.abs(lastIter.diff).toExponential(3) : '—'}</div>
+    </div>
+    <div style="background:var(--color-background-secondary);border-radius:6px;padding:8px 10px">
+      <div style="color:var(--color-text-secondary);margin-bottom:2px">Survival probability</div>
+      <div style="font-family:var(--font-mono);font-size:11px">${(r.Q*100).toFixed(4)}%</div>
+      <div style="color:var(--color-text-tertiary);font-size:10px;margin-top:2px">= exp(−h·Δt)</div>
+    </div>
+  </div>
+  ${iHtml}`;
+}
+
+function renderTable() {
+  const tb = document.getElementById('fullBody');
+  tb.innerHTML = '';
+  results.forEach((r, i) => {
+    const bg = i%2===0?'var(--color-background-primary)':'var(--color-background-secondary)';
+    const pDefCol = r.pDef > 30 ? 'var(--color-text-danger)' : r.pDef > 15 ? 'var(--color-text-warning)' : 'var(--color-text-primary)';
+    tb.innerHTML += `<tr style="background:${bg};cursor:pointer" onclick="selectedPillar=${i};renderBtns();renderDetail(${i})">
+      <td style="padding:5px 8px;font-weight:500">${r.label}</td>
+      <td style="padding:5px 8px;text-align:right">${r.spread}</td>
+      <td style="padding:5px 8px;text-align:right;font-family:var(--font-mono);font-size:11px">${r.h.toFixed(2)}</td>
+      <td style="padding:5px 8px;text-align:right;font-family:var(--font-mono);font-size:11px">${(r.Q*100).toFixed(3)}%</td>
+      <td style="padding:5px 8px;text-align:right;font-family:var(--font-mono);font-size:11px;color:${pDefCol}">${r.pDef.toFixed(2)}%</td>
+      <td style="padding:5px 8px;text-align:right;font-family:var(--font-mono);font-size:11px">${r.dfT.toFixed(4)}</td>
+      <td style="padding:5px 8px;text-align:right;font-family:var(--font-mono);font-size:11px">${r.impliedSpread.toFixed(1)}</td>
+      <td style="padding:5px 8px;text-align:right">${r.nIter}</td>
+    </tr>`;
+  });
+}
+
+runAll();
+</script>

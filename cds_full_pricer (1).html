@@ -1,0 +1,169 @@
+
+<div style="padding:1rem 0">
+<div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px">Full CDS mark-to-market calculator</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:16px">
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 14px">
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:4px">5Y par spread (mkt, bps)</div>
+    <input type="number" id="mktSpread" value="350" min="1" max="3000" style="width:100%;font-size:14px" oninput="price()">
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 14px">
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:4px">Running coupon (bps)</div>
+    <select id="coupon" style="width:100%;font-size:13px" onchange="price()">
+      <option value="100" selected>100 (standard IG)</option>
+      <option value="500">500 (standard HY)</option>
+      <option value="0">0 (par spread trade)</option>
+    </select>
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 14px">
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:4px">Notional ($M)</div>
+    <input type="number" id="notional" value="10" min="1" max="500" style="width:100%;font-size:14px" oninput="price()">
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 14px">
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:4px">Recovery rate (%)</div>
+    <input type="number" id="recovery" value="40" min="0" max="90" style="width:100%;font-size:14px" oninput="price()">
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 14px">
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:4px">Risk-free rate (%)</div>
+    <input type="number" id="rfr" value="5.0" min="0" max="15" step="0.25" style="width:100%;font-size:14px" oninput="price()">
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 14px">
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:4px">You are</div>
+    <select id="side" style="width:100%;font-size:13px" onchange="price()">
+      <option value="1">Protection buyer</option>
+      <option value="-1">Protection seller</option>
+    </select>
+  </div>
+</div>
+
+<!-- Results -->
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px">
+  <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px">
+    <div style="font-size:11px;color:var(--color-text-secondary)">Par spread</div>
+    <div style="font-size:20px;font-weight:500;margin-top:2px" id="parSpreadOut">—</div>
+  </div>
+  <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px">
+    <div style="font-size:11px;color:var(--color-text-secondary)">Upfront (points)</div>
+    <div style="font-size:20px;font-weight:500;margin-top:2px" id="upfrontPts">—</div>
+  </div>
+  <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px">
+    <div style="font-size:11px;color:var(--color-text-secondary)">Upfront ($)</div>
+    <div style="font-size:20px;font-weight:500;margin-top:2px" id="upfrontDollar">—</div>
+  </div>
+  <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px">
+    <div style="font-size:11px;color:var(--color-text-secondary)">RPV01 (Risky DV01)</div>
+    <div style="font-size:20px;font-weight:500;margin-top:2px" id="rpv01">—</div>
+  </div>
+  <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px">
+    <div style="font-size:11px;color:var(--color-text-secondary)">CS01 ($)</div>
+    <div style="font-size:20px;font-weight:500;margin-top:2px" id="cs01">—</div>
+  </div>
+  <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px">
+    <div style="font-size:11px;color:var(--color-text-secondary)">5Y P(default)</div>
+    <div style="font-size:20px;font-weight:500;margin-top:2px" id="pdefault">—</div>
+  </div>
+</div>
+
+<!-- Leg breakdown -->
+<div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);overflow:hidden">
+<table style="width:100%;font-size:12px;border-collapse:collapse">
+  <thead><tr style="background:var(--color-background-secondary)">
+    <th style="text-align:left;padding:8px 12px;font-weight:500;color:var(--color-text-secondary)">Year</th>
+    <th style="text-align:right;padding:8px 12px;font-weight:500;color:var(--color-text-secondary)">DF</th>
+    <th style="text-align:right;padding:8px 12px;font-weight:500;color:var(--color-text-secondary)">Q(t)</th>
+    <th style="text-align:right;padding:8px 12px;font-weight:500;color:#185FA5">Fee leg PV ($k)</th>
+    <th style="text-align:right;padding:8px 12px;font-weight:500;color:#712B13">Prot leg PV ($k)</th>
+    <th style="text-align:right;padding:8px 12px;font-weight:500;color:var(--color-text-secondary)">Net PV ($k)</th>
+  </tr></thead>
+  <tbody id="legTable"></tbody>
+</table>
+</div>
+</div>
+
+<script>
+function price() {
+  const S_mkt = parseFloat(document.getElementById('mktSpread').value) / 10000;
+  const C = parseFloat(document.getElementById('coupon').value) / 10000;
+  const N = parseFloat(document.getElementById('notional').value) * 1e6;
+  const R = parseFloat(document.getElementById('recovery').value) / 100;
+  const r = parseFloat(document.getElementById('rfr').value) / 100;
+  const side = parseInt(document.getElementById('side').value);
+  const LGD = 1 - R;
+
+  const T = 5;
+  const steps = 60;
+  const dt = T / steps;
+  const h = S_mkt / LGD;
+
+  let feePV = 0, protPV = 0;
+  let Q_prev = 1.0;
+  let cumFee = [0,0,0,0,0], cumProt = [0,0,0,0,0];
+
+  for (let k = 1; k <= steps; k++) {
+    const t = k * dt;
+    const Q_t = Math.exp(-h * t);
+    const DF_t = Math.exp(-r * t);
+    const dQ = Q_prev - Q_t;
+    const Q_mid = (Q_prev + Q_t) / 2;
+
+    feePV += C * dt * DF_t * Q_mid;
+    protPV += LGD * DF_t * dQ;
+
+    const yr = Math.min(Math.ceil(t) - 1, 4);
+    cumFee[yr] += C * dt * DF_t * Q_mid;
+    cumProt[yr] += LGD * DF_t * dQ;
+
+    Q_prev = Q_t;
+  }
+
+  const rpv01 = feePV / C;
+  const parSpread = protPV / rpv01;
+  const upfrontFraction = (S_mkt - C) * rpv01;
+  const upfrontDollar = upfrontFraction * N * side;
+  const pDef5 = (1 - Math.exp(-h * T)) * 100;
+
+  const cs01 = rpv01 * N * 0.0001;
+
+  document.getElementById('parSpreadOut').textContent = (parSpread * 10000).toFixed(1) + ' bps';
+  const pts = upfrontFraction * 100;
+  document.getElementById('upfrontPts').textContent = (pts >= 0 ? '+' : '') + pts.toFixed(2) + ' pts';
+  document.getElementById('upfrontDollar').textContent = (upfrontDollar >= 0 ? '+' : '') + '$' + (upfrontDollar / 1000).toFixed(1) + 'k';
+  document.getElementById('rpv01').textContent = rpv01.toFixed(4);
+  document.getElementById('cs01').textContent = '$' + (cs01 / 1000).toFixed(1) + 'k';
+  document.getElementById('pdefault').textContent = pDef5.toFixed(2) + '%';
+
+  const tbody = document.getElementById('legTable');
+  tbody.innerHTML = '';
+  let cumFeeSum = 0, cumProtSum = 0;
+  for (let i = 0; i < 5; i++) {
+    const t_i = i + 1;
+    const Q_i = Math.exp(-h * t_i);
+    const DF_i = Math.exp(-r * t_i);
+    const feeK = cumFee[i] * N / 1000;
+    const protK = cumProt[i] * N / 1000;
+    const netK = (protK - feeK) * side;
+    cumFeeSum += feeK;
+    cumProtSum += protK;
+    const bg = i % 2 === 0 ? 'var(--color-background-primary)' : 'var(--color-background-secondary)';
+    const netCol = netK >= 0 ? 'var(--color-text-success)' : 'var(--color-text-danger)';
+    tbody.innerHTML += `<tr style="background:${bg}">
+      <td style="padding:6px 12px;font-weight:500">Y${t_i}</td>
+      <td style="padding:6px 12px;text-align:right">${DF_i.toFixed(4)}</td>
+      <td style="padding:6px 12px;text-align:right">${(Q_i*100).toFixed(2)}%</td>
+      <td style="padding:6px 12px;text-align:right;color:#0C447C">${feeK.toFixed(1)}</td>
+      <td style="padding:6px 12px;text-align:right;color:#712B13">${protK.toFixed(1)}</td>
+      <td style="padding:6px 12px;text-align:right;font-weight:500;color:${netCol}">${netK >= 0 ? '+' : ''}${netK.toFixed(1)}</td>
+    </tr>`;
+  }
+  const totNetK = (cumProtSum - cumFeeSum) * side;
+  const totCol = totNetK >= 0 ? 'var(--color-text-success)' : 'var(--color-text-danger)';
+  tbody.innerHTML += `<tr style="border-top:0.5px solid var(--color-border-secondary);font-weight:500">
+    <td style="padding:6px 12px">Total</td>
+    <td style="padding:6px 12px"></td><td style="padding:6px 12px"></td>
+    <td style="padding:6px 12px;text-align:right;color:#0C447C">${cumFeeSum.toFixed(1)}</td>
+    <td style="padding:6px 12px;text-align:right;color:#712B13">${cumProtSum.toFixed(1)}</td>
+    <td style="padding:6px 12px;text-align:right;color:${totCol}">${totNetK >= 0 ? '+' : ''}${totNetK.toFixed(1)}</td>
+  </tr>`;
+}
+price();
+</script>

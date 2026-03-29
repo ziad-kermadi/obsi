@@ -1,0 +1,152 @@
+
+<div style="padding:1rem 0">
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:11px'>
+  <span style="display:flex;align-items:center;gap:4px"><span style="width:20px;height:2px;background:#185FA5;display:inline-block"></span>Piecewise-constant h</span>
+  <span style="display:flex;align-items:center;gap:4px;margin-left:8px"><span style="width:20px;height:2px;background:#0F6E56;display:inline-block"></span>Log-linear Q (flat forward)</span>
+  <span style="display:flex;align-items:center;gap:4px;margin-left:8px"><span style="width:20px;height:2px;background:#854F0B;display:inline-block;border-top:2px dashed #854F0B;height:0"></span>Cubic spline log-Q</span>
+  <span style="display:flex;align-items:center;gap:4px;margin-left:8px"><span style="width:20px;height:2px;background:#993C1D;display:inline-block;border-top:2px dotted #993C1D;height:0"></span>Monotone convex</span>
+</div>
+<div style="display:flex;gap:8px;margin-bottom:4px;font-size:11px;color:var(--color-text-secondary)">
+  <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;background:#E6F1FB;border:0.5px solid #185FA5;border-radius:50%;display:inline-block"></span>Survival Q(t)</span>
+  <span style="display:flex;align-items:center;gap:4px;margin-left:8px"><span style="width:12px;height:12px;background:#FAEEDA;border:0.5px solid #854F0B;border-radius:50%;display:inline-block"></span>Forward hazard h(t)</span>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px">
+  <div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;text-align:center">Survival probability Q(t)</div>
+    <div style="position:relative;height:200px"><canvas id="chartQ"></canvas></div>
+  </div>
+  <div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;text-align:center">Forward hazard rate h(t) — bps</div>
+    <div style="position:relative;height:200px"><canvas id="chartH"></canvas></div>
+  </div>
+</div>
+<div style="margin-top:10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px;font-size:11px'>
+  <span style="font-weight:500">Key observation:</span> The piecewise-constant and log-linear Q methods are identical — both produce a step-function forward hazard. The cubic spline gives smooth forwards but can oscillate (negative hazard possible). Monotone convex preserves smoothness AND guarantees positivity.
+</div>
+<div style="margin-top:8px;overflow-x:auto">
+<table style="width:100%;font-size:11px;border-collapse:collapse">
+<thead><tr style="background:var(--color-background-secondary)">
+  <th style="padding:5px 8px;text-align:left;font-weight:500;color:var(--color-text-secondary)">Method</th>
+  <th style="padding:5px 8px;text-align:center;font-weight:500;color:var(--color-text-secondary)">Exact fit at pillars</th>
+  <th style="padding:5px 8px;text-align:center;font-weight:500;color:var(--color-text-secondary)">Positive fwd h</th>
+  <th style="padding:5px 8px;text-align:center;font-weight:500;color:var(--color-text-secondary)">Smooth fwd h</th>
+  <th style="padding:5px 8px;text-align:center;font-weight:500;color:var(--color-text-secondary)">Monotone Q</th>
+  <th style="padding:5px 8px;text-align:left;font-weight:500;color:var(--color-text-secondary)">Desk usage</th>
+</tr></thead>
+<tbody>
+<tr><td style="padding:5px 8px;font-weight:500">Piecewise-constant h</td><td style="padding:5px 8px;text-align:center;color:#0F6E56">Yes</td><td style="padding:5px 8px;text-align:center;color:#0F6E56">Yes*</td><td style="padding:5px 8px;text-align:center;color:#A32D2D">No</td><td style="padding:5px 8px;text-align:center;color:#0F6E56">Yes</td><td style="padding:5px 8px;font-size:10px;color:var(--color-text-secondary)">ISDA standard, most desks</td></tr>
+<tr style="background:var(--color-background-secondary)"><td style="padding:5px 8px;font-weight:500">Log-linear Q</td><td style="padding:5px 8px;text-align:center;color:#0F6E56">Yes</td><td style="padding:5px 8px;text-align:center;color:#0F6E56">Yes</td><td style="padding:5px 8px;text-align:center;color:#A32D2D">No</td><td style="padding:5px 8px;text-align:center;color:#0F6E56">Yes</td><td style="padding:5px 8px;font-size:10px;color:var(--color-text-secondary)">Equivalent to above</td></tr>
+<tr><td style="padding:5px 8px;font-weight:500">Natural cubic spline log-Q</td><td style="padding:5px 8px;text-align:center;color:#0F6E56">Yes</td><td style="padding:5px 8px;text-align:center;color:#A32D2D">No!</td><td style="padding:5px 8px;text-align:center;color:#0F6E56">Yes</td><td style="padding:5px 8px;text-align:center;color:#854F0B">Usually</td><td style="padding:5px 8px;font-size:10px;color:var(--color-text-secondary)">Some exotics desks</td></tr>
+<tr style="background:var(--color-background-secondary)"><td style="padding:5px 8px;font-weight:500">Monotone convex</td><td style="padding:5px 8px;text-align:center;color:#0F6E56">Yes</td><td style="padding:5px 8px;text-align:center;color:#0F6E56">Yes</td><td style="padding:5px 8px;text-align:center;color:#0F6E56">Yes</td><td style="padding:5px 8px;text-align:center;color:#0F6E56">Yes</td><td style="padding:5px 8px;font-size:10px;color:var(--color-text-secondary)">Rates/XVA desks, some credit</td></tr>
+</tbody>
+</table>
+</div>
+<div style="font-size:10px;color:var(--color-text-tertiary);margin-top:4px">* with positivity clamp</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const PILLARS = [0,0.5,1,2,3,5,7,10];
+const SPREADS = [0,185,210,255,295,350,385,410];
+const REC=0.40, LGD=0.60, R=0.05;
+
+function pcHazards(){
+  let h=[],Q=[1.0],tP=0,Qp=1.0;
+  for(let i=1;i<PILLARS.length;i++){
+    const S=SPREADS[i]/10000,T=PILLARS[i],dT=T-tP;
+    const hi=Math.max(1e-6,S/LGD);
+    h.push(hi); Qp=Qp*Math.exp(-hi*dT); Q.push(Qp); tP=T;
+  }
+  return {h,Q:Q.slice(1)};
+}
+
+const {h:pcH,Q:pcQ}=pcHazards();
+const Qnodes=[1,...pcQ];
+
+function cubicSplineCoeffs(xs,ys){
+  const n=xs.length-1,a=ys.slice();
+  const h2=xs.map((x,i)=>i<n?xs[i+1]-x:0);
+  const alpha=Array(n+1).fill(0);
+  for(let i=1;i<n;i++) alpha[i]=3/h2[i]*(a[i+1]-a[i])-3/h2[i-1]*(a[i]-a[i-1]);
+  const c=Array(n+1).fill(0),l=Array(n+1).fill(1),mu=Array(n+1).fill(0),z=Array(n+1).fill(0);
+  for(let i=1;i<n;i++){l[i]=2*(xs[i+1]-xs[i-1])-h2[i-1]*mu[i-1];mu[i]=h2[i]/l[i];z[i]=(alpha[i]-h2[i-1]*z[i-1])/l[i];}
+  for(let j=n-1;j>=0;j--) c[j]=z[j]-mu[j]*c[j+1];
+  const b=Array(n).fill(0),d=Array(n).fill(0);
+  for(let i=0;i<n;i++){b[i]=(a[i+1]-a[i])/h2[i]-h2[i]*(c[i+1]+2*c[i])/3;d[i]=(c[i+1]-c[i])/(3*h2[i]);}
+  return {a,b,c,d};
+}
+
+const logQ=Qnodes.map(q=>Math.log(q));
+const cs=cubicSplineCoeffs(PILLARS,logQ);
+
+function evalSplineLogQ(t){
+  let seg=0;
+  for(let i=0;i<PILLARS.length-1;i++) if(t>=PILLARS[i]&&t<=PILLARS[i+1]) seg=i;
+  const dt=t-PILLARS[seg];
+  return cs.a[seg]+cs.b[seg]*dt+cs.c[seg]*dt*dt+cs.d[seg]*dt*dt*dt;
+}
+
+function monoConvexQ(t){
+  if(t<=0) return 1;
+  if(t>=10) return Qnodes[Qnodes.length-1];
+  let i=0;
+  for(let j=0;j<PILLARS.length-1;j++) if(t>=PILLARS[j]&&t<PILLARS[j+1]) i=j;
+  const h2i=PILLARS[i+1]-PILLARS[i];
+  const theta=(t-PILLARS[i])/h2i;
+  const f0=-Math.log(Qnodes[i])/h2i, f1=-Math.log(Qnodes[i+1])/h2i;
+  const fMid=Math.max(0,(theta<=0.5?f0+theta*2*(f1-f0):f1+(1-theta)*2*(f0-f1)));
+  return Math.exp(-fMid*h2i*theta);
+}
+
+const tGrid=[];
+for(let t=0;t<=10;t+=0.05) tGrid.push(parseFloat(t.toFixed(2)));
+
+const Qpc=tGrid.map(t=>{
+  let i=0;
+  for(let j=0;j<PILLARS.length-1;j++) if(t>PILLARS[j]) i=j;
+  const dT=t-PILLARS[i], prev=Qnodes[i];
+  return (prev*Math.exp(-pcH[Math.min(i,pcH.length-1)]*dT))*100;
+});
+
+const Qspline=tGrid.map(t=>{
+  const lq=Math.min(0,evalSplineLogQ(t));
+  return Math.exp(lq)*100;
+});
+
+const Qmc=tGrid.map(t=>monoConvexQ(t)*100);
+
+const dt2=0.02;
+function fwdH(Qfn,t){
+  const q1=Qfn(t+dt2), q0=Qfn(t-dt2>0?t-dt2:0);
+  return -Math.log(q1/Math.max(q0,0.001))/(2*dt2)*10000;
+}
+
+function pcFwdH(t){
+  let i=0;
+  for(let j=0;j<PILLARS.length-1;j++) if(t>PILLARS[j]) i=j;
+  return Math.max(0,pcH[Math.min(i,pcH.length-1)]*10000);
+}
+
+function splineQfn(t){return Math.exp(Math.min(0,evalSplineLogQ(t)));}
+
+const isDark=matchMedia('(prefers-color-scheme: dark)').matches;
+const gridC=isDark?'rgba(255,255,255,0.07)':'rgba(0,0,0,0.07)';
+const txtC=isDark?'#9c9a92':'#73726c';
+const pillarPts=PILLARS.slice(1).map(t=>({x:t,y:Qnodes[PILLARS.indexOf(t)]*100}));
+
+const commOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{type:'linear',min:0,max:10,grid:{color:gridC},ticks:{color:txtC,font:{size:10},stepSize:1}},y:{grid:{color:gridC},ticks:{color:txtC,font:{size:10}}}}};
+
+new Chart(document.getElementById('chartQ'),{type:'line',data:{labels:tGrid,datasets:[
+  {data:Qpc,borderColor:'#185FA5',borderWidth:1.5,pointRadius:0,fill:false,tension:0},
+  {data:Qspline,borderColor:'#854F0B',borderWidth:1.5,borderDash:[6,3],pointRadius:0,fill:false,tension:0},
+  {data:Qmc,borderColor:'#993C1D',borderWidth:1.5,borderDash:[3,3],pointRadius:0,fill:false,tension:0.2},
+  {data:tGrid.map((t,i)=>{const px=pillarPts.find(p=>Math.abs(p.x-t)<0.03);return px?px.y:null}),borderColor:'#185FA5',pointRadius:4,pointBackgroundColor:'#E6F1FB',showLine:false}
+]},options:{...commOpts,scales:{...commOpts.scales,y:{...commOpts.scales.y,title:{display:true,text:'Q(t) %',color:txtC,font:{size:10}}}}}});
+
+new Chart(document.getElementById('chartH'),{type:'line',data:{labels:tGrid,datasets:[
+  {data:tGrid.map(t=>pcFwdH(t)),borderColor:'#185FA5',borderWidth:1.5,pointRadius:0,fill:false,tension:0},
+  {data:tGrid.map(t=>Math.max(-50,fwdH(splineQfn,t))),borderColor:'#854F0B',borderWidth:1.5,borderDash:[6,3],pointRadius:0,fill:false,tension:0.3},
+  {data:tGrid.map(t=>Math.max(0,fwdH(monoConvexQ,t))),borderColor:'#993C1D',borderWidth:1.5,borderDash:[3,3],pointRadius:0,fill:false,tension:0.2}
+]},options:{...commOpts,scales:{...commOpts.scales,y:{...commOpts.scales.y,title:{display:true,text:'fwd h(t) bps',color:txtC,font:{size:10}}}}}});
+</script>
