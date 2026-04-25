@@ -46,7 +46,7 @@ Where $Q(0, t)$ is the **Survival Probability**: $Q(0, t) = e^{-\int_{0}^{t} \la
 
 Since this is the first pillar, we solve for the $\lambda_1$ that makes the equation match the market 6M Upfront.
 
-![[IMG-20260329214355023.png]]
+![[IMG-20260330144544761.png]]
 #### **Step 4: The Recursive Leap (1Y, 2Y... 10Y)**
 
 Now we move to the 1-year pillar ($T_2$).
@@ -345,7 +345,7 @@ Numerically this integral is computed by summing over the same coupon periods: $
 
 Here is the exact Newton-Raphson loop as it runs. Step through each pillar:Click any pillar button to inspect the Newton-Raphson convergence for that specific node. Drag the sliders to watch the whole curve reprice live.
 
-![[hazard_bootstrap_stepper.html]]
+![[IMG-20260330144544840.html]]
 
 ---
 
@@ -401,15 +401,15 @@ The mid-period approximation used in practice:
 
 PV(accrued) ≈ C · Σᵢ (Δtᵢ/2) · DF(midᵢ) · [Q(tᵢ₋₁) − Q(tᵢ)]
 
-![[IMG-20260329223526126.png]]
+![[IMG-20260330144545106.png]]
 
 This treats the default as occurring at the midpoint of each period on average. More accurate systems use the exact integral under piecewise-constant h, which has a closed form:
 
 For the segment [a, b] with hazard h and discount rate r:
 
-![[IMG-20260329220853788.png]]
+![[IMG-20260330144545399.png]]
 
-![[IMG-20260329221001199.png]]
+![[IMG-20260330144545546.png]]
 
 Most production systems use the mid-period approximation for speed. The difference is sub-0.1bp for investment-grade names, but can reach 0.5–1bp for high-yield.
 
@@ -417,7 +417,7 @@ Most production systems use the mid-period approximation for speed. The differen
 
 ## Part 9: Day count and calendar — the unglamorous but critical part---
 
-![[IMG-20260329142601328.png]]
+![[IMG-20260330144545663.png]]
 
 ## Part 10: The discount curve — OIS stripping in practice
 
@@ -482,7 +482,7 @@ This is the hardest constraint and the one the bootstrap can violate if spreads 
 
 **Why it happens:** Market quotes are composite mid prices assembled from multiple dealers. Bid-offer noise can easily make the 2Y spread wider than the 3Y spread by a few basis points. A naive bootstrap then produces a negative h₃Y. In stress periods this is common across many parts of the curve.Try dragging the 3Y spread above the 5Y spread and watch the violation fire. The three repair strategies show what the desk actually does in practice — clamping is the most common.
 
-![[monotone_positivity_correct (1).html]]
+![[IMG-20260330144545747.html]]
 
 ---
 
@@ -502,7 +502,7 @@ The consequence: trades maturing at 4Y price off h₅Y. Trades at 4.9Y also pric
 
 There are four main approaches the desk uses:The right panel is the critical one. The blue step function is what almost every desk uses. The dashed amber cubic spline is smooth but can go _negative_ — visible in the chart. The dotted red monotone convex method guarantees smoothness _and_ positivity.
 
-![[interpolation_comparison.html]]
+![[IMG-20260330144545835.html]]
 
 ---
 
@@ -530,7 +530,7 @@ The constraint is: for any sub-interval, the interpolated forward hazard must st
 
 Not every reference entity has quotes at all 7 standard pillars. A small corporate might only have 5Y and 10Y. A distressed name might only have 1Y. The desk has to decide what to do with the gaps.Toggle pillars off to simulate a sparse quote sheet. The triangle markers show where the curve is interpolated vs market-observed. The desk would mark those interpolated nodes as "model price" rather than "market price" in the risk system — a distinction that matters for P&L attribution.
 
-![[interpolation_smoothness_correct.html]]
+![[IMG-20260330144545921.html]]
 
 ---
 

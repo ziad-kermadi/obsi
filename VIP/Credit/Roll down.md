@@ -60,8 +60,8 @@ _(Note: We assume JTD is $0$ here to isolate the baseline expected return)._
 
 To really cement this intuition, use this tool to see how steepening or flattening the credit curve impacts your total carry. If you make the 4-year spread _higher_ than the 5-year spread (an inverted curve), you will see roll-down turn into a penalty.
 
-![[IMG-20260324200349490.png]]
-![[IMG-20260324200406938.png]]
+![[IMG-20260330144544743.png]]
+![[IMG-20260330144544974.png]]
 
 
 ---

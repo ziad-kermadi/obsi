@@ -1,4 +1,4 @@
-![[IMG-20260324202554871.png]]
+![[IMG-20260330144544748.png]]
 
 This table is essentially a "weather map" for credit markets. It classifies debt into four distinct regimes, ranging from the safest corporate bonds to the most volatile sovereign debt, based on how they trade, what you get back if things go wrong, and how math models struggle to keep up.
 

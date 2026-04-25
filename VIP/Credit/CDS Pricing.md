@@ -9,7 +9,7 @@ Credit Default Swaps are among the most analytically rich instruments on a tradi
 A CDS is a bilateral contract where the **protection buyer** pays a fixed periodic spread (the "coupon") in exchange for a contingent payment if a reference entity defaults. Pricing means finding the **par spread** — the coupon that makes the contract worth zero at inception — or marking an existing trade with a running coupon.
 
 There are **two legs** to value separately:---
-![[IMG-20260329144833654.png]]
+![[IMG-20260330144544766.png]]
 
 ## 2. The inputs — what the desk actually uses
 
@@ -49,7 +49,7 @@ Under the simplest piecewise-constant hazard rate model:
 
 For each tenor node T₁ < T₂ < ... < Tₙ, solve for hₙ such that the CDS struck at S(Tₙ) is worth zero — given survival probabilities already solved at all prior nodes. This is a one-dimensional root-find (Newton or bisection) at each step.---
 
-![[survival_curve_bootstrap.html]]
+![[IMG-20260330144544876.html]]
 ## 4. Valuing the fee leg (premium leg)
 
 The protection buyer pays the running coupon S on the notional, accruing over each period, _conditional on no prior default_. The present value of the fee leg is:
@@ -88,7 +88,7 @@ The convention on the desk is to integrate over **daily steps** or at minimum ov
 
 ## 6. Putting it together — the full pricing engine---
 
-![[cds_full_pricer (1).html]]
+![[IMG-20260330144545250.html]]
 
 ## 7. From par spread to upfront — the SNAC convention
 
@@ -127,7 +127,7 @@ For a $10M 5Y HY position, CS01 is roughly $4,000–$4,500 per bp.
 
 ## 9. What actually happens at the desk — workflow---
 
-![[IMG-20260329145005351.png]]
+![[IMG-20260330144545478.png]]
 
 ## 10. Subtleties that separate desk practice from textbook
 
