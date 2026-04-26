@@ -4,14 +4,14 @@ When pricing exotic derivatives, the choice between a **Local Volatility (LV) mo
 
 ## **1. Key Differences Between Local and Stochastic Volatility Models**
 
-| Feature                  | Local Volatility (LV) | Stochastic Volatility (SV) |
-|--------------------------|----------------------|---------------------------|
-| **Volatility Behavior**  | Deterministic function of spot price and time: $\sigma_{\text{local}}(S,t)$. | Volatility follows a stochastic process (e.g., Heston, SABR). |
-| **Captures Smile Dynamics?** | Yes, but only at one point in time (calibrated to today’s smile). | Yes, evolves dynamically over time, better for term structure. |
-| **Path Dependency?** | No memory; future volatility depends only on $S(t)$. | Has memory; volatility follows its own stochastic path. |
-| **Skew Behavior** | Imposes **static** volatility skew. | Allows **dynamics** in skew evolution. |
-| **Handles Smile Evolution?** | No, does not model forward smile. | Yes, models how implied vol smile shifts over time. |
-| **Repricing Vanilla Options?** | Perfectly fits vanilla options today. | Approximate fit to vanillas but captures future movements better. |
+| Feature                        | Local Volatility (LV)                                                        | Stochastic Volatility (SV)                                        |
+| ------------------------------ | ---------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| **Volatility Behavior**        | Deterministic function of spot price and time: $\sigma_{\text{local}}(S,t)$. | Volatility follows a stochastic process (e.g., Heston, SABR).     |
+| **Captures Smile Dynamics?**   | Yes, but only at one point in time (calibrated to today’s smile).            | Yes, evolves dynamically over time, better for term structure.    |
+| **Path Dependency?**           | No memory; future volatility depends only on $S(t)$.                         | Has memory; volatility follows its own stochastic path.           |
+| **Skew Behavior**              | Imposes **static** volatility skew.                                          | Allows **dynamics** in skew evolution.                            |
+| **Handles Smile Evolution?**   | No, does not model forward smile.                                            | Yes, models how implied vol smile shifts over time.               |
+| **Repricing Vanilla Options?** | Perfectly fits vanilla options today.                                        | Approximate fit to vanillas but captures future movements better. |
 
 ---
 
