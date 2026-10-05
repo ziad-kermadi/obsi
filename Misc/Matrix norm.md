@@ -1,6 +1,6 @@
 ---
-title: "Untitled 1"
-tags: [inbox]
+title: "Matrix norm"
+tags: [math]
 type: note
 status: draft
 created: 2025-04-06

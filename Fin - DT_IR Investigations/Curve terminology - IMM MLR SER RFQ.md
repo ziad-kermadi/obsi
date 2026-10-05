@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Curve terminology - IMM MLR SER RFQ"
 tags: [investigations, rates]
 type: note
 status: draft

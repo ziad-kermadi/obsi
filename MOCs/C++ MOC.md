@@ -24,6 +24,7 @@ C++ study notes: memory, data structures, tooling and smart-pointer implementati
 - [[Dynamic Programming Cheat Sheet]]
 - [[shared_ptr implem]]
 - [[unique_ptr implem]]
+- [[C++ interview concepts continued]]
 
 ## Related MOCs
 

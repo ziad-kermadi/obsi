@@ -15,6 +15,8 @@ Interview preparation: CV, brainteasers and VP interview terms.
 - [[BrainTeaser Flowchart]]
 - [[CV 1]]
 - [[Terms]]
+- [[Bergomi Ch1 questions]]
+- [[Bergomi Ch2 questions]]
 
 ## Related MOCs
 

@@ -1,6 +1,6 @@
 ---
-title: "Untitled"
-tags: [inbox]
+title: "C++ interview concepts continued"
+tags: [cpp]
 type: note
 status: draft
 created: 2025-12-08

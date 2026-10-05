@@ -1,6 +1,6 @@
 ---
-title: "Untitled"
-tags: [inbox]
+title: "IR derivatives pricing cheat sheet"
+tags: [rates, ir]
 type: note
 status: draft
 created: 2025-12-07

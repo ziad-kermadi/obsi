@@ -19,6 +19,9 @@ Quant maths: cheat sheets, numerical methods, linear algebra and stochastic calc
 - [[5 - Change of measure]]
 - [[6 - S & S]]
 - [[9 - Math needed]]
+- [[Matrix norm]]
+- [[Determinant of upper triangular matrix]]
+- [[Cube roots of unity are conjugates]]
 
 ## Related MOCs
 

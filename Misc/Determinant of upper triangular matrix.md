@@ -1,6 +1,6 @@
 ---
-title: "Untitled 2"
-tags: [inbox]
+title: "Determinant of upper triangular matrix"
+tags: [math]
 type: note
 status: draft
 created: 2026-01-19

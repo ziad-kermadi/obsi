@@ -1,6 +1,6 @@
 ---
-title: "Untitled 6"
-tags: [inbox]
+title: "Alpha ideas - order flow and microstructure"
+tags: [research]
 type: note
 status: draft
 created: 2025-06-10

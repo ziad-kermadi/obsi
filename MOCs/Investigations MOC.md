@@ -13,7 +13,7 @@ DT_IR investigations: curve-set examples, irhelper.cpp walkthroughs and GPT-assi
 ## Overview
 
 - [[Pricing IR - Darbyshire -- Curveset example]]
-- [[Fin - DT_IR Investigations/Untitled|Untitled (Fin - DT_IR Investigations)]]
+- [[Curve terminology - IMM MLR SER RFQ]]
 
 ## DB / irhelper.cpp
 
@@ -33,6 +33,7 @@ DT_IR investigations: curve-set examples, irhelper.cpp walkthroughs and GPT-assi
 - [[Multi-curve calibration on real rates desks]]
 - [[Question → structured “I’ve done this in prod” answer - To be validated via Gemini]]
 - [[Questions]]
+- [[Curve terminology - IMM MLR SER RFQ]]
 
 ## Related MOCs
 

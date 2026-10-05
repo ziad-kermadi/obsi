@@ -1,6 +1,6 @@
 ---
-title: "Untitled 3"
-tags: [inbox]
+title: "Cube roots of unity are conjugates"
+tags: [math]
 type: note
 status: draft
 created: 2025-04-06

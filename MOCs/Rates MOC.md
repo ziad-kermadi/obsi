@@ -39,6 +39,7 @@ Interest-rate pricing, vol surfaces and exotics notes from DBA.
 - [[Pricing CMS & CMS Spread Options in DBOPT]]
 - [[Rates term structure & skew modelling in DBX and DBL]]
 - [[Understanding Risk Aggregation Using the Vanilla European Swaption Market Vol Surface]]
+- [[IR derivatives pricing cheat sheet]]
 
 ## Related MOCs
 

@@ -1,6 +1,6 @@
 ---
-title: "Untitled 4"
-tags: [inbox]
+title: "Bergomi Ch1 questions"
+tags: [interview, equity]
 type: note
 status: draft
 created: 2025-05-25

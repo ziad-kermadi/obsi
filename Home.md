@@ -33,12 +33,4 @@ Entry point for the vault. Start from a topic map below.
 - [[Deep Research - Casablanca]]
 
 ## Inbox / needs triage
-- [[Untitled 1]]
-- [[Untitled 2]]
-- [[Untitled 3]]
-- [[Untitled 4]]
-- [[Untitled 5]]
-- [[Untitled 6]]
-- [[Untitled|Untitled (root)]]
-- [[Misc/Untitled|Untitled (Misc)]]
-- [[Welcome]]
+- [[Alpha ideas - order flow and microstructure]]

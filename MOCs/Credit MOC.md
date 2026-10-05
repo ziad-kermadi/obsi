@@ -25,6 +25,7 @@ CDS and credit modelling: pricing, risk, bootstrapping and trade ideas.
 - [[Credit Regime Taxonomy]]
 - [[Quoting convs]]
 - [[Roll down]]
+- [[Curve Trades (Isolating Roll Down)]]
 
 ## Related MOCs
 
