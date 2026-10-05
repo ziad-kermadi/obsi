@@ -1,3 +1,11 @@
+---
+title: "BuildMethod - Hybrid Forward"
+tags: [dba, rates, ir]
+type: note
+status: draft
+created: 2026-01-28
+updated: 2026-10-05
+---
 
 The **Hybrid Forward Curve Building** method is a technique used to construct a piecewise-continuous curve for forward rates. It combines elements of **Quadratic Forward**, **Constant Forward**, and **Linear Zero** approaches to ensure smoothness while keeping the risk characteristics of the curve appropriate for pricing and risk management.
 

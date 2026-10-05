@@ -1,3 +1,11 @@
+---
+title: "EURMLR"
+tags: [dba, rates, curves]
+type: note
+status: draft
+created: 2025-10-13
+updated: 2026-10-05
+---
  ![[IMG-20250714200536764.jpg]]
 ![[IMG-20250714200547324.jpg]]
 Excellent — you're spot on again.

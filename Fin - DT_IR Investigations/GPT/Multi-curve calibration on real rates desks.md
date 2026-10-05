@@ -1,3 +1,11 @@
+---
+title: "Multi-curve calibration on real rates desks"
+tags: [investigations, rates, gpt-notes]
+type: note
+status: draft
+created: 2026-01-19
+updated: 2026-10-05
+---
 I’ll unpack what “simultaneous” multi-curve calibration means on real rates desks, how the math/optimization actually works (with constraints, weighting, and Jacobians), then I’ll walk through a concrete toy-but-realistic worked example with numbers.
 
 

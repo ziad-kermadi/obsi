@@ -1,3 +1,11 @@
+---
+title: "Untitled"
+tags: [investigations, rates]
+type: note
+status: draft
+created: 2025-06-24
+updated: 2026-10-05
+---
 Interpolation mode changes on switch (IMM dates)
 
 MLR = Multi Linear Regression

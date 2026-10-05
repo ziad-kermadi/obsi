@@ -1,3 +1,11 @@
+---
+title: "Bootstrap"
+tags: [credit, vip]
+type: note
+status: draft
+created: 2026-03-30
+updated: 2026-10-05
+---
 To explain how a CDS curve is calibrated on a live trading desk, we have to look at the **Bootstrap** process. On a desk, this happens in milliseconds, but the logic follows a very specific sequence of "solving for the unknown."
 
 ### 1. The Goal: The Hazard Rate Curve

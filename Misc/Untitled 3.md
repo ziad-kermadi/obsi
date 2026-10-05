@@ -1,3 +1,11 @@
+---
+title: "Untitled 3"
+tags: [inbox]
+type: note
+status: draft
+created: 2025-04-06
+updated: 2026-10-05
+---
 Sure! Let’s mathematically show that $\omega = e^{2\pi i / 3}$ and $\omega^2 = e^{4\pi i / 3}$ are conjugates.
 
 #### Step 1: The complex conjugate of a number

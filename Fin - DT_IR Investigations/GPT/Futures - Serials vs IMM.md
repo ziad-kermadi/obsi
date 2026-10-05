@@ -1,3 +1,11 @@
+---
+title: "Futures - Serials vs IMM"
+tags: [investigations, rates, gpt-notes]
+type: note
+status: draft
+created: 2026-01-25
+updated: 2026-10-05
+---
 You sit on a rates desk and somehow the market still expects humans to remember naming conventions invented decades ago by committees. Fine. Let’s clean this up properly, beginner-friendly, desk-real, and without fairy tales.
 
 I’ll go **what they are → why they exist → how they are actually used in curve building**.

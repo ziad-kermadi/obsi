@@ -1,3 +1,11 @@
+---
+title: "CBMD step & Futures"
+tags: [dba, rates, curves]
+type: note
+status: draft
+created: 2025-07-14
+updated: 2026-10-05
+---
 Perfect — let’s go through an **illustrative example** where we take:
 
 * A few **Fed meeting dates**

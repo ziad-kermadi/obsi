@@ -1,3 +1,11 @@
+---
+title: "How do desks stop the short end from lying, especially around central bank meetings"
+tags: [investigations, rates, gpt-notes]
+type: note
+status: draft
+created: 2026-01-19
+updated: 2026-10-05
+---
 You’re basically asking: “How do desks stop the short end from lying, especially around central bank meetings, and how does that feed into the whole multi-curve + multi-currency machine?”
 
 Here’s the desk-true version.

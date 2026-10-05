@@ -1,3 +1,11 @@
+---
+title: "Untitled 1"
+tags: [inbox]
+type: note
+status: draft
+created: 2025-04-06
+updated: 2026-10-05
+---
 
 A **matrix norm** is a function that assigns a non-negative number to a matrix, capturing some measure of the “size” or “magnitude” of the matrix. Formally, a matrix norm $\|A\|$ is a mapping:
 $$

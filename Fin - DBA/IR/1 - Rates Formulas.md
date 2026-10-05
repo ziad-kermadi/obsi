@@ -1,3 +1,11 @@
+---
+title: "1 - Rates Formulas"
+tags: [dba, rates, ir]
+type: note
+status: draft
+created: 2026-01-28
+updated: 2026-10-05
+---
 ![[IMG-20260128195625832.png]]
 
 ![[IMG-20260128195625964.png]]

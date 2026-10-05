@@ -1,3 +1,11 @@
+---
+title: "Choosing Between Local Volatility vs. Stochastic Volatility Models for Pricing Exotic Derivatives"
+tags: [dba, rates, ir]
+type: note
+status: draft
+created: 2026-04-25
+updated: 2026-10-05
+---
 When pricing exotic derivatives, the choice between a **Local Volatility (LV) model** and a **Stochastic Volatility (SV) model** depends on the product's sensitivity to **volatility dynamics** and the characteristics of the underlying asset. Below is a structured approach to deciding when to use each model.
 
 ---

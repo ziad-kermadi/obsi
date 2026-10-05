@@ -1,3 +1,11 @@
+---
+title: "Untitled"
+tags: [inbox]
+type: note
+status: draft
+created: 2025-12-07
+updated: 2026-10-05
+---
 # **Pricing Formulas Cheat Sheet for Interest Rate Derivatives**  
 
 This table summarizes the **pricing formulas** for **interest rate derivatives**, from **vanilla products (swaps, caps, floors, swaptions)** to **exotic instruments (CMS, Bermudan swaptions, structured products)**.

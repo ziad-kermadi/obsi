@@ -1,3 +1,11 @@
+---
+title: "CDS risk sensitivities"
+tags: [credit, vip]
+type: note
+status: draft
+created: 2026-03-24
+updated: 2026-10-05
+---
 When a Credit Default Swap (CDS) is sitting on a professional trading desk, the "Risk Duration" we discussed is just the tip of the iceberg. To manage a book, a trader decomposes the contract into a series of sensitivities (the "Greeks" of credit) to understand how every possible market wiggle—from a tiny interest rate shift to a total corporate collapse—will hit their PnL.
 
 Here is the granular breakdown of every primary risk sensitivity, how they are calculated, and the intuition behind them.

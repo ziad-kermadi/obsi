@@ -1,3 +1,11 @@
+---
+title: "Rates term structure & skew modelling in DBX and DBL"
+tags: [dba, rates, ir-exotics]
+type: note
+status: draft
+created: 2026-01-28
+updated: 2026-10-05
+---
 ![[IMG-20260128202817263.jpeg|1800]]
 ![[IMG-20260128202817313.jpeg|1150]]
 ![[IMG-20260128202817401.jpeg|1025]]

@@ -1,3 +1,11 @@
+---
+title: "7 - Cmake"
+tags: [cpp]
+type: note
+status: draft
+created: 2025-03-19
+updated: 2026-10-05
+---
 
 # **CMake Cheat Sheet for C++ Interviews**
 

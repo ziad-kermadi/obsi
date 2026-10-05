@@ -1,3 +1,11 @@
+---
+title: "shared_ptr implem"
+tags: [cpp]
+type: note
+status: draft
+created: 2025-03-23
+updated: 2026-10-05
+---
 
 Great! Now, let's implement a **`SharedPtr`** from scratch, explaining every single line in detail just like we did with `UniquePtr`.
 

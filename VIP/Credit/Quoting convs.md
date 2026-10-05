@@ -1,3 +1,11 @@
+---
+title: "Quoting convs"
+tags: [credit, vip]
+type: note
+status: draft
+created: 2026-03-24
+updated: 2026-10-05
+---
 - **Par Spread** = Coupon for which the CDS has NPV=0, assuming a piece-wise constant hazard curve (considered in conjunction with all other par spreads); _also called Running Spread_
 - **Quoted Spread** = Coupon for which the CDS has NPV=0, assuming a flat hazard curve (considered in isolation to all other quoted spreads); _also called Conventional Spread_
 - **Quoted Upfront** = Value that matches the NPV of a CDS with a fixed coupon (500p in this example), assuming a flat hazard curve (considered in isolation to all other spreads)

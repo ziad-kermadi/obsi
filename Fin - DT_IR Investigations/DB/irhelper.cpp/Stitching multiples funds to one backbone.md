@@ -1,3 +1,11 @@
+---
+title: "Stitching multiples funds to one backbone"
+tags: [investigations, rates, cpp]
+type: note
+status: draft
+created: 2026-01-25
+updated: 2026-10-05
+---
 ![[IMG-20260125222724483.jpeg]]
 ![[IMG-20260125222732686.jpeg]]
 ![[IMG-20260125222745047.jpeg]]

@@ -1,3 +1,11 @@
+---
+title: "CDS risk duration"
+tags: [credit, vip]
+type: note
+status: draft
+created: 2026-03-24
+updated: 2026-10-05
+---
 In the world of Credit Default Swaps (CDS), **Risk Duration** (often called **Risky PV01**, **RPV01**, or **Risky Duration**) is the most critical metric for managing a position.
 
 Unlike a standard Treasury bond, where duration is primarily a function of interest rates, **CDS Risk Duration measures the sensitivity of the contract's value to a 1 basis point change in the credit spread.**

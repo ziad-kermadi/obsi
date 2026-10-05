@@ -1,3 +1,11 @@
+---
+title: "10 - Other Terminology"
+tags: [dba]
+type: note
+status: draft
+created: 2025-03-18
+updated: 2026-10-05
+---
 
 
 ### **Forward Swap Rate: Definition, Intuition, and Calculation**  

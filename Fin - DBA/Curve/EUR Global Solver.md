@@ -1,3 +1,11 @@
+---
+title: "EUR Global Solver"
+tags: [dba, rates, curves]
+type: note
+status: draft
+created: 2025-07-14
+updated: 2026-10-05
+---
 ![[IMG-20250711180631248.jpg|1050]]
 Great — let's go through the content in the screenshot **slowly and thoroughly**, breaking it down **line by line**, clarifying all terminology, roles of components, and why it's structured that way.
 

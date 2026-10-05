@@ -1,3 +1,11 @@
+---
+title: "Question → structured “I’ve done this in prod” answer - To be validated via Gemini"
+tags: [investigations, rates, gpt-notes]
+type: note
+status: draft
+created: 2026-01-19
+updated: 2026-10-05
+---
 Fine. We’ll do this like an actual VP interview: **question → structured “I’ve done this in prod” answer**, with the stuff people forget (accrual mechanics, calendars, tolerances, and the parts that ruin risk).
 
 There are **50+ questions** across the two lists, so I’m starting with **Q1–Q12** (the ones most likely to show up early in an interview, and the ones you can’t fake). Next up after that would be Q13 onward.

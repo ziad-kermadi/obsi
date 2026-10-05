@@ -1,3 +1,11 @@
+---
+title: "IR Derivatives Formulas"
+tags: [dba, rates, ir]
+type: note
+status: draft
+created: 2026-01-28
+updated: 2026-10-05
+---
 
 ![[IMG-20260128195626091.png]]
 

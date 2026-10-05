@@ -1,3 +1,11 @@
+---
+title: "CDS Pricing"
+tags: [credit, vip]
+type: note
+status: draft
+created: 2026-03-30
+updated: 2026-10-05
+---
 # CDS Pricing: A Trading Desk Walkthrough
 
 Credit Default Swaps are among the most analytically rich instruments on a trading desk. Let me walk through pricing from first principles — exactly as a quant or structurer would approach it.

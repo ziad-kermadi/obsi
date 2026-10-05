@@ -1,3 +1,11 @@
+---
+title: "Interest rate spread curve 2"
+tags: [dba, rates, ir]
+type: note
+status: draft
+created: 2026-04-25
+updated: 2026-10-05
+---
 ![[IMG-20260425202642460.jpeg]]
 ![[WhatsApp Image 2026-04-25 at 20.26.20.jpeg]]
 ![[IMG-20260425202652718.jpeg]]

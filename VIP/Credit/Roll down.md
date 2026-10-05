@@ -1,3 +1,11 @@
+---
+title: "Roll down"
+tags: [credit, vip]
+type: note
+status: draft
+created: 2026-03-30
+updated: 2026-10-05
+---
 
 Let's dive into the mechanics of **Roll-Down**. This is the hidden engine of fixed-income and credit trading. While the premium is the visible cash flow you collect, roll-down is the "stealth" capital gain you earn simply because time passes.
 

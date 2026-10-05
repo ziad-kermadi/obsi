@@ -1,3 +1,11 @@
+---
+title: "Pricing Interest Rate Vanilla Options"
+tags: [dba, rates, ir]
+type: note
+status: draft
+created: 2026-02-01
+updated: 2026-10-05
+---
 ![[WhatsApp Image 2026-02-01 at 20.45.52.jpeg]]
 ![[WhatsApp Image 2026-02-01 at 20.45.52 (1).jpeg]]
 ![[WhatsApp Image 2026-02-01 at 20.45.52 (2).jpeg]]

@@ -1,3 +1,11 @@
+---
+title: "FORECAST"
+tags: [dba, rates, curves]
+type: note
+status: draft
+created: 2025-07-11
+updated: 2026-10-05
+---
 ![[IMG-20250711140825321.png]]
 ![[IMG-20250711140835390.jpg]]
 ![[IMG-20250711140846955.jpg]]

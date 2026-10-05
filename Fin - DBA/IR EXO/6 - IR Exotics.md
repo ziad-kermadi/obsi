@@ -1,3 +1,11 @@
+---
+title: "6 - IR Exotics"
+tags: [dba, rates, ir-exotics]
+type: note
+status: draft
+created: 2026-08-17
+updated: 2026-10-05
+---
 
 
 

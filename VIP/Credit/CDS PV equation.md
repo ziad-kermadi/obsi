@@ -1,3 +1,11 @@
+---
+title: "CDS PV equation"
+tags: [credit, vip]
+type: note
+status: draft
+created: 2026-03-30
+updated: 2026-10-05
+---
 ### **The High-Level Intuition**
 
 A Credit Default Swap is essentially an insurance policy on a bond.

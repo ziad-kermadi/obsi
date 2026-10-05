@@ -1,3 +1,11 @@
+---
+title: "Pricing Bermudians"
+tags: [dba, rates, ir-exotics]
+type: note
+status: draft
+created: 2026-04-26
+updated: 2026-10-05
+---
 # Bermudian Swaption Pricing: A Trading Desk Walkthrough
 
 ## What Is a Bermudian Swaption?

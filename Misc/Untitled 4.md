@@ -1,3 +1,11 @@
+---
+title: "Untitled 4"
+tags: [inbox]
+type: note
+status: draft
+created: 2025-05-25
+updated: 2026-10-05
+---
 Here are 20 questions (mix of derivation/proof and short-answer) for **Chapter 1 (Introduction)** of Bergomi’s *Stochastic Volatility Modeling*, each followed by its answer including the key formula and an intuition note. At the end you’ll find a summary table.
 
 ---

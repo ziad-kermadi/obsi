@@ -1,3 +1,11 @@
+---
+title: "Deep Research - Casablanca"
+tags: [project]
+type: note
+status: draft
+created: 2026-02-04
+updated: 2026-10-05
+---
 # Strategic Investment Analysis: Residential Real Estate in Casablanca, Morocco
 
 The global real estate landscape in the mid-2020s is characterized by a search for yield in an environment of elevated interest rates and compressed capitalization rates in traditional Western markets. Within this context, Casablanca, the economic capital of Morocco, presents a compelling yet complex value proposition for the international investor. It is a market defined by its dual identity: a burgeoning African financial hub hosting the Casablanca Finance City (CFC) and a historic metropolis grappling with rapid urbanization and modernization. For the prospective investor, purchasing rental property in Casablanca is not merely a transaction of acquiring brick and mortar; it is an entry into a sophisticated legal and financial ecosystem that offers distinct advantages—such as currency stability and strong rental demand—balanced against rigorous bureaucratic procedures and exchange control regulations.

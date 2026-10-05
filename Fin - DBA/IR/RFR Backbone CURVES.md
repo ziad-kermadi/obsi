@@ -1,3 +1,11 @@
+---
+title: "RFR Backbone CURVES"
+tags: [dba, rates, ir]
+type: note
+status: draft
+created: 2026-01-28
+updated: 2026-10-05
+---
 ![[IMG-20260128212209021.jpeg]]
 ![[IMG-20260128212219670.jpeg]]
 ![[IMG-20260128212227941.jpeg]]

@@ -1,3 +1,11 @@
+---
+title: "Overview of Non-Linear Rates Models in DBA"
+tags: [dba, rates, ir-exotics]
+type: note
+status: draft
+created: 2026-01-28
+updated: 2026-10-05
+---
 ![[IMG-20260128202817276.jpeg]]
 ![[IMG-20260128202817360.jpeg]]![[IMG-20260128202817445.jpeg]]
 ![[IMG-20260128202817536.jpeg]]

@@ -1,3 +1,11 @@
+---
+title: "USD Curve Construction"
+tags: [dba, rates, curves]
+type: note
+status: draft
+created: 2025-07-14
+updated: 2026-10-05
+---
 ![[IMG-20250711175338656.jpg|1000]]
 ![[IMG-20250711175344589.jpg|1025]]
 ![[IMG-20250711175349882.jpg|1025]]

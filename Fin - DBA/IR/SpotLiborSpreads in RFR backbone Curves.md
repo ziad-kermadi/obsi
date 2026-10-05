@@ -1,3 +1,11 @@
+---
+title: "SpotLiborSpreads in RFR backbone Curves"
+tags: [dba, rates, ir]
+type: note
+status: draft
+created: 2026-01-28
+updated: 2026-10-05
+---
 ![[IMG-20260128214243236.jpeg]]
 ![[IMG-20260128214251893.jpeg]]
 ![[IMG-20260128214300585.jpeg]]

@@ -1,3 +1,11 @@
+---
+title: "CV 1"
+tags: [interview]
+type: note
+status: draft
+created: 2026-03-24
+updated: 2026-10-05
+---
 This is a significant step in your career. For a VP-level role at a firm like Rothesay—which manages over **£70 billion** in pension assets —the interviewers will look beyond your ability to code. They want to see if you understand the "why" behind the models, their failure modes in a live production environment, and how they impact the balance sheet.
 
 Since you mentioned being "grilled," these questions are designed to challenge your technical depth and your experience at Deutsche Bank and Société Générale.

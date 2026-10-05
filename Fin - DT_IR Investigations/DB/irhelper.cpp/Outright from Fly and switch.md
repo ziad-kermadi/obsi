@@ -1,3 +1,11 @@
+---
+title: "Outright from Fly and switch"
+tags: [investigations, rates, cpp]
+type: note
+status: draft
+created: 2026-01-25
+updated: 2026-10-05
+---
 ![[IMG-20260125214532697.jpeg]]
 ![[IMG-20260125214545892.jpeg]]
 ![[IMG-20260125214555329.jpeg]]

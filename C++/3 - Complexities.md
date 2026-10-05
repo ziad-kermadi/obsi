@@ -1,3 +1,11 @@
+---
+title: "3 - Complexities"
+tags: [cpp]
+type: note
+status: draft
+created: 2026-01-19
+updated: 2026-10-05
+---
 
 # **Time Complexity Cheat Sheet with Intuition**
 

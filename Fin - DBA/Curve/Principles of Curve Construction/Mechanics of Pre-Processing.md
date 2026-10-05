@@ -1,3 +1,11 @@
+---
+title: "Mechanics of Pre-Processing"
+tags: [dba, rates, curves]
+type: note
+status: draft
+created: 2025-05-30
+updated: 2026-10-05
+---
 
 ![[IMG-20250530104658361.png]]
 

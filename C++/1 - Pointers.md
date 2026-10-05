@@ -1,3 +1,11 @@
+---
+title: "1 - Pointers"
+tags: [cpp]
+type: note
+status: draft
+created: 2025-03-19
+updated: 2026-10-05
+---
 ![[Pasted image 20250319115448.png]]
 
 ----

@@ -1,3 +1,11 @@
+---
+title: "Untitled 6"
+tags: [inbox]
+type: note
+status: draft
+created: 2025-06-10
+updated: 2026-10-05
+---
 Below are four “next-level” alpha ideas—each digs deeper into market microstructure, cross-asset relationships, or latent regimes. I’ll give you intuition, the core formula, and a sketch of how you’d implement it in Python. At the end is a comparative table so you can decide which to explore first.
 
 ---

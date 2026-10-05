@@ -1,3 +1,11 @@
+---
+title: "Pricing CMS & CMS Spread Options in DBOPT"
+tags: [dba, rates, ir-exotics]
+type: note
+status: draft
+created: 2026-04-26
+updated: 2026-10-05
+---
 ![[IMG-20260426114929871.jpeg]]
 ![[IMG-20260426114948015.jpeg]]
 ![[IMG-20260426114955077.jpeg]]

@@ -1,3 +1,11 @@
+---
+title: "Credit Carry trades"
+tags: [credit, vip]
+type: note
+status: draft
+created: 2026-03-24
+updated: 2026-10-05
+---
 This is a classic Wall Street dynamic often described as "picking up pennies in front of a steamroller." Let's break down exactly what this image is telling us, step by step, keeping things relaxed but mathematically rigorous.
 
 I also need to point something out right out of the gate: **the formula provided in your image for the "MTM loss" contains a slight technical redundancy.** I will clarify that below so you don't end up double-counting your risks.

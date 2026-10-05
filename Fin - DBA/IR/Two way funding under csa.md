@@ -1,3 +1,11 @@
+---
+title: "Two way funding under csa"
+tags: [dba, rates, ir]
+type: note
+status: draft
+created: 2026-02-01
+updated: 2026-10-05
+---
 A **Credit Support Annex (CSA)** is a legal document that defines the terms for posting and managing collateral between counterparties in derivatives transactions. It is part of the **ISDA Master Agreement**, which standardizes over-the-counter (OTC) derivatives trading.
 
 ---

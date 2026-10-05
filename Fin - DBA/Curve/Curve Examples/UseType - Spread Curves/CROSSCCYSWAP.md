@@ -1,3 +1,11 @@
+---
+title: "CROSSCCYSWAP"
+tags: [dba, rates, curves]
+type: note
+status: stub
+created: 2025-07-11
+updated: 2026-10-05
+---
 ![[IMG-20250711135245500.png]]
 ![[IMG-20250711135511179.png]]
 ![[IMG-20250711135535584.png]]

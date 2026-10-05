@@ -1,3 +1,11 @@
+---
+title: "Dynamic Programming Cheat Sheet"
+tags: [cpp]
+type: note
+status: draft
+created: 2026-01-19
+updated: 2026-10-05
+---
 
 
 ## What Dynamic Programming really is (minus the mystical fog)

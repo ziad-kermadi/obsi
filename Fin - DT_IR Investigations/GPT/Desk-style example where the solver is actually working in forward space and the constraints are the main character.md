@@ -1,3 +1,11 @@
+---
+title: "Desk-style example where the solver is actually working in forward space and the constraints are the main character"
+tags: [investigations, rates, gpt-notes]
+type: note
+status: draft
+created: 2026-01-25
+updated: 2026-10-05
+---
 You want a desk-style example where the **solver is actually working in forward space** and the **constraints are the main character**, not an afterthought. Fine. Here’s what it looks like when a real curve engine is trying to keep your risk from turning into modern art.
 
 ---

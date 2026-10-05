@@ -1,3 +1,11 @@
+---
+title: "Untitled 2"
+tags: [inbox]
+type: note
+status: draft
+created: 2026-01-19
+updated: 2026-10-05
+---
 Sure! Let’s step through a detailed proof that the determinant of an upper triangular matrix is the product of its diagonal entries. We’ll start by recalling the definition of the determinant and then demonstrate the result using properties of row expansion.
 
 ---

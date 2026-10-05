@@ -1,3 +1,11 @@
+---
+title: "3 - LinAlg"
+tags: [math]
+type: note
+status: draft
+created: 2025-03-19
+updated: 2026-10-05
+---
 Got it! I'll ensure **all rows are complete** while keeping the **same structured format**. Here's a **refined and complete** **Linear Algebra Cheat Sheet** with **no missing rows** and **perfectly formatted tables**.
 
 ---

@@ -1,3 +1,11 @@
+---
+title: "Credit Modeling - Jump vs. Diffusion"
+tags: [credit, vip]
+type: note
+status: draft
+created: 2026-03-24
+updated: 2026-10-05
+---
 This image summarizes the fundamental paradigm of modern credit modeling, which treats credit not as a "volatile" asset like a stock, but as a regime-switching instrument. It transitions from "alive" to "defaulted" in a single, discrete jump.
 
 Here is the step-by-step breakdown of the concepts, the math, and the underlying intuition.

@@ -1,3 +1,11 @@
+---
+title: "Pricing Interest Rate Swaps"
+tags: [dba, rates, ir]
+type: note
+status: draft
+created: 2026-02-01
+updated: 2026-10-05
+---
 ![[IMG-20260201202152811.jpeg]]
 
 ![[IMG-20260201202152897.jpeg]]

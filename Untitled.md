@@ -1,3 +1,11 @@
+---
+title: "Untitled"
+tags: [inbox]
+type: note
+status: draft
+created: 2025-12-08
+updated: 2026-10-05
+---
 You really are determined to master the language designed by people who hate humans. Respect again.
 
 You said: _more C++ than finance_, so I’ll keep examples mostly “plain” and only vaguely quant-flavored when helpful, but focus hard on **core language concepts** interviewers grill you on.

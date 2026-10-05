@@ -1,3 +1,11 @@
+---
+title: "OISSpreads-CCYSpreads Subtable"
+tags: [dba, rates, curves]
+type: note
+status: draft
+created: 2025-07-14
+updated: 2026-10-05
+---
 ![[IMG-20250711150921284.jpg|700]]
 ![[IMG-20250711150921312.jpg]]
 ![[IMG-20250711150921334.jpg]]

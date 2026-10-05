@@ -1,3 +1,11 @@
+---
+title: "Interest Rate Curve"
+tags: [dba, rates, ir]
+type: note
+status: draft
+created: 2026-04-25
+updated: 2026-10-05
+---
 ![[IMG-20260425201453204.jpeg]]
 ![[IMG-20260425201502411.jpeg]]
 ![[IMG-20260425201510353.jpeg]]

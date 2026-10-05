@@ -1,3 +1,11 @@
+---
+title: "Credit Regime Taxonomy"
+tags: [credit, vip]
+type: note
+status: draft
+created: 2026-03-30
+updated: 2026-10-05
+---
 ![[IMG-20260330144544748.png]]
 
 This table is essentially a "weather map" for credit markets. It classifies debt into four distinct regimes, ranging from the safest corporate bonds to the most volatile sovereign debt, based on how they trade, what you get back if things go wrong, and how math models struggle to keep up.

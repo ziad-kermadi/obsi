@@ -1,3 +1,11 @@
+---
+title: "Untitled 5"
+tags: [inbox]
+type: note
+status: draft
+created: 2025-05-25
+updated: 2026-10-05
+---
 Below are **30 derivation‐style questions** for **Chapter 2 (Local Volatility)**, each worked out in full, “boring” detail with every algebraic step spelled out. Citations refer to equation numbers and passages in the PDF.
 
 ---

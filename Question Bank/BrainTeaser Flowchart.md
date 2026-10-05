@@ -1,3 +1,11 @@
+---
+title: "BrainTeaser Flowchart"
+tags: [interview, question-bank]
+type: note
+status: draft
+created: 2025-03-29
+updated: 2026-10-05
+---
 
 
 

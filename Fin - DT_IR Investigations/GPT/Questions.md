@@ -1,3 +1,11 @@
+---
+title: "Questions"
+tags: [investigations, rates, gpt-notes]
+type: note
+status: draft
+created: 2026-04-27
+updated: 2026-10-05
+---
 # 1. **Theoretically, 1m,6m,12m forward rates can be calculated from a 3m LIBOR forecasting curve , but these calculated rates will be different from the real**
 
 This is an excellent question that cuts straight to one of the most fundamental shifts in modern quantitative finance.

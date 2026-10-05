@@ -1,3 +1,11 @@
+---
+title: "Auto-Calibration for Bermudan Swaption Pricing"
+tags: [dba, rates, ir-exotics]
+type: note
+status: draft
+created: 2026-04-26
+updated: 2026-10-05
+---
 ![[IMG-20260128210256503.jpeg]]
 ![[IMG-20260128210424715.jpeg]]
 ![[IMG-20260128210435008.jpeg]]

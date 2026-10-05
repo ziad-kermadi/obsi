@@ -1,0 +1,25 @@
+filters:
+  and:
+    - file.ext == "md"
+    - '!file.hasTag("moc")'
+views:
+  - type: table
+    name: All notes
+    order:
+      - file.name
+      - tags
+      - status
+      - updated
+      - file.folder
+    sort:
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: Stubs to fill in
+    filters:
+      and:
+        - 'status == "stub"'
+    order:
+      - file.name
+      - file.folder
+      - updated

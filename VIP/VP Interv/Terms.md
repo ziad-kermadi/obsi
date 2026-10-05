@@ -1,3 +1,11 @@
+---
+title: "Terms"
+tags: [interview, vip]
+type: note
+status: draft
+created: 2026-05-25
+updated: 2026-10-05
+---
 **Fair Value Through Other Comprehensive Income (FVOCI)**
 
 Other Comprehensive Income (OCI)

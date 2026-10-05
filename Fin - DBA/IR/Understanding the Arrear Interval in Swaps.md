@@ -1,3 +1,11 @@
+---
+title: "Understanding the Arrear Interval in Swaps"
+tags: [dba, rates, ir]
+type: note
+status: draft
+created: 2026-02-01
+updated: 2026-10-05
+---
 The **arrear interval** in a swap refers to the time gap between when the floating rate is **observed (fixed)** and when it is **applied** to the cash flow. This concept is crucial in differentiating **standard (vanilla) swaps** and **in-arrears swaps**.
 
 ---

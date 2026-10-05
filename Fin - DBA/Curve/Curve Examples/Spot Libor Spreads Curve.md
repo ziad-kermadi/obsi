@@ -1,3 +1,11 @@
+---
+title: "Spot Libor Spreads Curve"
+tags: [dba, rates, curves]
+type: note
+status: draft
+created: 2025-07-11
+updated: 2026-10-05
+---
 ![[IMG-20250711142704840.jpg]]
 ![[IMG-20250711142709552.jpg]]
 ![[IMG-20250711142714135.jpg]]

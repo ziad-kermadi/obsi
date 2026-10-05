@@ -1,3 +1,11 @@
+---
+title: "Comparative Table -  Credit vs. Other Risks"
+tags: [credit, vip]
+type: note
+status: draft
+created: 2026-03-24
+updated: 2026-10-05
+---
 | **Feature**          | **Interest Rate Risk (Duration)** | **Equity Risk (Delta)** | **Credit Risk (Jump/Gamma)**         |
 | -------------------- | --------------------------------- | ----------------------- | ------------------------------------ |
 | **Primary Driver**   | Yield curve shifts                | Price movements         | Spread widening + Event risk         |

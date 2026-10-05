@@ -1,3 +1,11 @@
+---
+title: "unique_ptr implem"
+tags: [cpp]
+type: note
+status: draft
+created: 2025-03-23
+updated: 2026-10-05
+---
 
 Got it! I'll break down **every single line** so that you deeply understand how to implement a `UniquePtr` from scratch.  
 

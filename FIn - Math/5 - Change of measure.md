@@ -1,3 +1,11 @@
+---
+title: "5 - Change of measure"
+tags: [math]
+type: note
+status: draft
+created: 2025-03-19
+updated: 2026-10-05
+---
 # **Change of Measure in Quantitative Finance – Memory Guide & Cheat Sheet**  
 
 Change of measure is **critical in derivatives pricing, risk-neutral valuation, and stochastic calculus**. Many people get confused about **which measure is the starting vs. target measure in the Radon-Nikodym derivative**. This guide provides **a foolproof way to remember it**, along with the usual cheat sheet content.
