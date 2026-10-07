@@ -25,5 +25,10 @@ Thinking self vs Noticing self
 
 Value goals instead of outcome goals
 
+If youre in shit and have a companion, which one would you want it to be ? -> self-compassion
+- Acknowledge your pain honestly
+- If someone you deeply care about is suffering how would you treat them ?
+
+
 
 
