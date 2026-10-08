@@ -29,6 +29,11 @@ If youre in shit and have a companion, which one would you want it to be ? -> se
 - Acknowledge your pain honestly
 - If someone you deeply care about is suffering how would you treat them ?
 
+We may not have control if our feelings but we have much control on our actions 
+- If we decouple them that is
+
+
+
 
 
 
