@@ -2,7 +2,7 @@ Your mind is like an overly helpful friend.
 
 Noticing and naming 
 
-Dropping anchor
+***==Dropping anchor==***
 
 How can we tell we’re hooked:
 - Our thoughts are commands we must obey or rules we must follow
@@ -38,7 +38,7 @@ Emotion motivates us
 
 If your struggle switch is already on any emotion that comes will hook you
 
-TAME your emotions : 
+***==TAME your emotions :==*** 
 - T: Take note(notice and name whats happening in your body)
 - A: Allow( give the feeling permission to be there)
 - M: Make room(open up and let it flow freely through you) - Sense it as an object
@@ -90,7 +90,15 @@ Documentary of You:
 
 Healing the Past:
 - Go back to you ger you and give him support
-- 
+- does this memory have something useful to offer ?
+- What does it tell you you care about ?
+- What values does it remind you of ?
+
+Art of appreciation:
+- Practice yourfocus and savouring skills in everyday life
+- Enjoy but dont cling
+
+
 
 
 
