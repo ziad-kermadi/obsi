@@ -98,6 +98,38 @@ Art of appreciation:
 - Practice yourfocus and savouring skills in everyday life
 - Enjoy but dont cling
 
+A life worth living:
+- Values(not goals) should dictate what you do 
+- You can live by your values wether or not you achieve the goal
+- Doesnt mean giving up on goals though
+- Values are not rules , there are always many ways you can act upon them
+- Dont get hooked by rules
+- Same unhooking methods apply to rules
+
+One step at a time:
+- Dont try and work on too many areas at the same time.
+- Goals that are not too easy and not too hard
+- No dead person goals
+- Make goals specific
+
+HARD Barriers:
+- H: Hooked 
+	- Unhooking skills
+- A:Avoiding discomfort
+	- Unhooking
+- R: Remoteness from values
+	- Connect it to your values
+- D: Doubtful goals
+
+The reason-giving machine loves what-if stories
+
+Choose ***==towards moves==***
+
+Commitment means carrying on through ups and downs
+
+Success in life means living by your values
+
+
 
 
 
