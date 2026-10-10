@@ -76,7 +76,21 @@ Ruminating:
 - Illusion of working hard
 - Temporary escape from bad feelings
 
+What does this emotion tell me really matters ?
 
+Dipping in and out of the stream:
+- 30 seconds in ruminating thoughts 30 secs out for around 6 mins
+- Needs to be constantly trained
+
+Documentary of You:
+- power of self esteem
+- You cant convince your mind
+- Unhooking
+- Dont get too attached to either positive or negative self stories
+
+Healing the Past:
+- Go back to you ger you and give him support
+- 
 
 
 
