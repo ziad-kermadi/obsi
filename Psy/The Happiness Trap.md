@@ -130,6 +130,10 @@ Commitment means carrying on through ups and downs
 Success in life means living by your values
 
 
+Kind in acknowledging we went off track
+
+What can I do instead of dwelling ?
+
 
 
 
