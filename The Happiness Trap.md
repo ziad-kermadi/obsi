@@ -32,6 +32,22 @@ If youre in shit and have a companion, which one would you want it to be ? -> se
 We may not have control if our feelings but we have much control on our actions 
 - If we decouple them that is
 
+OBEY & STRUGGLE modes
+
+Emotion motivates us
+
+If your struggle switch is already on any emotion that comes will hook you
+
+TAME your emotions : 
+- T: Take note(notice and name whats happening in your body)
+- A: Allow( give the feeling permission to be there)
+- M: Make room(open up and let it flow freely through you) - Sense it as an object
+- E: Expand awareness
+
+
+
+
+
 
 
 
