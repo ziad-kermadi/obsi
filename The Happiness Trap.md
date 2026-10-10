@@ -44,6 +44,16 @@ TAME your emotions :
 - M: Make room(open up and let it flow freely through you) - Sense it as an object
 - E: Expand awareness
 
+Kind self hands
+
+Urge Surfing:
+- Neither give in nor resist 
+- Most urges last around 3 minutes
+- Struggling with them makes them last longer
+- Use TAME while visualising as a wave
+
+
+
 
 
 
