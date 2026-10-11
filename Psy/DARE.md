@@ -74,6 +74,13 @@ GIVE UP YOUR SAFE ZONE
 KEEP REPEATING I LOVE MYSELF
 
 
+Respond to setbacks by the DARE method
+
+Give up your crutches:
+- Things or people you depend on to feel reassured and safe
+
+Each day think of at least one thing to push outside your safe zone
+
 
 
 
