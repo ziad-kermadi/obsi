@@ -69,7 +69,11 @@ GIVE UP YOUR SAFE ZONE
 - Safe zone is a myth
 - Break it into small steps
 - Leave on your own terms
-- 
+- solidify your success by writing it down - rushing back to safety sends the wrong signals
+
+KEEP REPEATING I LOVE MYSELF
+
+
 
 
 
